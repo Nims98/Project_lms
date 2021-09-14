@@ -1,11 +1,12 @@
 import React from "react";
 import HomePage from "./components/HomePage";
-import LoginForm from "./components/LoginForm";
-
+import SideBar from "./components/SideBar";
+import DashBoard from "./components/DashBoard";
 const App = () => {
   return (
     <div>
-      <HomePage />
+      {/* <HomePage /> */}
+      <DashBoard />
     </div>
   );
 };
