@@ -11,19 +11,15 @@ const useStyles = makeStyles({
     borderRadius: 10,
   },
 });
-const Course = () => {
+const Course = ({ courseName, courseCode, info }) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography variant="h2">EE5201</Typography>
-        <Typography variant="h4">Web Application Development</Typography>
-        <Typography variant="p">
-          In this course you will learn how to properly develop an web
-          application
-        </Typography>
+        <Typography variant="h2">{courseCode}</Typography>
+        <Typography variant="h4">{courseName}</Typography>
+        <Typography variant="p">{info}</Typography>
       </CardContent>
       {/* <CardActions>
         <Button size="small">Learn More</Button>
