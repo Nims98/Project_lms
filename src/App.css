@@ -4,6 +4,16 @@ body {
     padding: 0;
 }
 
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 20px;
+    background: rgb(0, 73, 139);
+    border-radius: 10px;
+}
+
 
 /* .navbar {
     width: 100%;
