@@ -1,12 +1,13 @@
 import React from "react";
 import SchoolIcon from "@material-ui/icons/School";
-import { Tabs, Tab, Typography } from "@material-ui/core";
+import { Tabs, Tab } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import { useState } from "react";
 import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import MyCourses from "./MyCourses";
 import SideBar from "./SideBar";
+import { Container } from "@material-ui/core";
 const MyTabs = withStyles({
   indicator: {
     backgroundColor: "white",
@@ -24,11 +25,16 @@ const MyTab = withStyles({
 const useStyles = makeStyles({
   container: {
     display: "flex",
-    background: "blue",
+    background: "gray",
+    justifyContent: "left",
+    height: "100vh",
+  },
+  sidebar: {
+    width: "200px",
   },
 
   navbar: {
-    width: "100%",
+    width: "100vw",
     height: "80px",
     display: "flex",
     background: "linear-gradient(to right, rgb(0, 44, 76), rgb(0, 73, 139))",
@@ -58,7 +64,8 @@ const useStyles = makeStyles({
   search: {
     padding: "0 0 0 10px",
     height: "30px",
-    width: "500px",
+    minWidth: "300px",
+    maxWidth: "500px",
     borderRadius: "5px 0 0 5px",
     fontSize: "14px",
     borderStyle: "none",
@@ -142,15 +149,17 @@ const DashBoard = () => {
             <button className={classes.button}>Search</button>
           </div>
         </div>
-        <div className={classes.container}>
+        {/* <div className={classes.container}> */}
+        <Container className={classes.container} fixed>
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/mycourses" component={MyCourses} />
           </Switch>
-        </div>
-        <div>
-          <SideBar />
-        </div>
+          {/* </div> */}
+        </Container>
+        {/* <div>
+          <SideBar className={classes.sidebar} />
+        </div> */}
       </Router>
     </div>
   );

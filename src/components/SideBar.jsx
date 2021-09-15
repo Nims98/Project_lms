@@ -4,15 +4,16 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   drawer: {
-    width: "160px",
+    display: "flex",
+    width: "300px",
   },
 });
 
 const SideBar = () => {
   const classes = useStyles();
   return (
-    <div>
-      <Drawer className={classes.drawer} variant="permanent">
+    <div className={classes.drawer}>
+      <Drawer variant="permanent">
         <List>
           <ListItem button>
             <ListItemText primary="Profile" />
