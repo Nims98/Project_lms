@@ -1,17 +1,44 @@
 body {
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 0;
     padding: 0;
 }
 
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    width: 20px;
-    background: rgb(0, 73, 139);
+    width: 10px;
+    /* background: rgb(0, 73, 139); */
+    background: rgb(100, 100, 100);
     border-radius: 10px;
+}
+
+.root {
+    display: flex;
+}
+
+.root .main {
+    display: flex;
+    background: linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139));
+    width: 75%;
+    height: 100vh;
+    /* justifyContent: left; */
+    /* overflow: hidden; */
+    overflow-Y: scroll;
+}
+
+.root .side {
+    display: flex;
+    width: 25%;
+    height: 100vh;
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    background: gray;
 }
 
 
