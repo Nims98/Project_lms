@@ -4,7 +4,6 @@ import { Container, Grid } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core/";
 import { TextField } from "@material-ui/core/";
-import Course from "./Course";
 import React, { useState } from "react";
 
 const MyTabs = withStyles({

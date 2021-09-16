@@ -1,5 +1,5 @@
 body {
-    /* overflow: hidden; */
+    overflow: hidden;
     margin: 0;
     padding: 0;
 }
@@ -11,7 +11,7 @@ body {
 ::-webkit-scrollbar-thumb {
     width: 10px;
     /* background: rgb(0, 73, 139); */
-    background: rgb(100, 100, 100);
+    background: rgb(235, 235, 235);
     border-radius: 10px;
 }
 
@@ -27,12 +27,15 @@ body {
     /* justifyContent: left; */
     /* overflow: hidden; */
     overflow-Y: scroll;
+    padding-bottom: 100px;
 }
 
 .root .side {
     display: flex;
     width: 25%;
     height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .header {

@@ -5,14 +5,20 @@ import DashBoard from "./components/DashBoard";
 import EnrollPage from "./components/EnrollPage";
 import CourseView from "./components/CourseView";
 import NavBar from "./components/NavBar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MyCourses from "./components/MyCourses";
 const App = () => {
   return (
     <div>
-      <CourseView />
-      {/* <EnrollPage /> */}
-      {/* <HomePage /> */}
-      {/* <NavBar /> */}
-      {/* <DashBoard /> */}
+      <Router>
+        <Switch>
+          <Route path="/" component={DashBoard} />
+          {/* <EnrollPage /> */}
+          {/* <HomePage /> */}
+          {/* <NavBar /> */}
+          {/* <MyCourses /> */}
+        </Switch>
+      </Router>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import SchoolIcon from "@material-ui/icons/School";
 import { Tabs, Tab } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     height: "80px",
     display: "flex",
     background: "linear-gradient(to right, rgb(0, 44, 76), rgb(0, 73, 139))",
-    zIndex: 2,
+    // zIndex: 2,
     boxShadow: "0 0 15px rgba(0, 0, 0, 0.4)",
     position: "fixed",
   },
@@ -114,14 +114,14 @@ const NavBar = () => {
                     <MyTab
                       label="Home"
                       component={Link}
-                      to="/home"
-                      value="/home"
+                      to="/dashboard/home "
+                      value="0"
                     />
                     <MyTab
                       label="My Courses"
                       component={Link}
-                      to="/mycourses"
-                      value="/mycourses"
+                      to="/dashboard/mycourses"
+                      value="1"
                     />
                   </MyTabs>
                 </>

@@ -6,14 +6,8 @@ import MyCourses from "./MyCourses";
 import SideBar from "./SideBar";
 import { Container } from "@material-ui/core";
 import NavBar from "./NavBar";
-
+import CourseView from "./CourseView";
 const useStyles = makeStyles({
-  container: {
-    display: "flex",
-    background: "gray",
-    justifyContent: "left",
-    height: "100vh",
-  },
   sidebar: {
     width: "200px",
   },
@@ -23,16 +17,19 @@ const DashBoard = () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <div style={{ display: "flex", top: "80px" }}>
       <Router>
         <NavBar />
-        <Container className={classes.container} fixed>
-          <Switch>
-            <Route path="/home" component={Home} />
-            <Route path="/mycourses" component={MyCourses} />
-          </Switch>
+        <Switch>
+          <Route path="/dashboard/home" exact component={Home} />
+          <Route
+            path="/dashboard/mycourses/courseview"
+            exact
+            component={CourseView}
+          />
+          <Route path="/dashboard/mycourses" component={MyCourses} />
           {/* </div> */}
-        </Container>
+        </Switch>
         {/* <div>
           <SideBar className={classes.sidebar} />
         </div> */}
