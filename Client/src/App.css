@@ -90,44 +90,21 @@ body {
     padding: 0 10px 0 10px;
 } */
 
-.tr2 {
-    background: linear-gradient( rgb(0, 73, 139), rgb(0, 44, 76));
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    rotate: 35deg;
-    right: 280px;
-    bottom: -150px;
-    z-index: -2;
-}
-
-.tr1 {
-    background: linear-gradient( rgb(0, 73, 139), rgb(0, 44, 76));
-    width: 1000px;
-    height: 2000px;
-    position: absolute;
-    rotate: 135deg;
-    right: 0px;
-    bottom: -80px;
-    box-shadow: 0 0 10px black;
-    z-index: -1;
-}
-
-.para {
-    color: black;
-    background-color: aqua;
-}
-
-.login {
+.root {
     display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    background: rgb(255, 255, 255);
-    border-radius: 5px;
-    padding: 10px;
-    margin-left: 80%;
-    min-height: 100px;
+    flex-direction: row;
+}
+
+.root .left {
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    background: rgb(235, 235, 235);
+}
+
+.root .right {
+    display: flex;
+    height: 100vh;
+    width: 50%;
+    background: rgb(0, 73, 139);
 }

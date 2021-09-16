@@ -7,6 +7,8 @@ import SideBar from "./SideBar";
 import { Container } from "@material-ui/core";
 import NavBar from "./NavBar";
 import CourseView from "./CourseView";
+import { withRouter } from "react-router-dom";
+
 const useStyles = makeStyles({
   sidebar: {
     width: "200px",
@@ -21,13 +23,13 @@ const DashBoard = () => {
       <Router>
         <NavBar />
         <Switch>
-          <Route path="/dashboard/home" exact component={Home} />
+          <Route exact path="/dashboard/all-courses" component={Home} />
           <Route
-            path="/dashboard/mycourses/courseview"
             exact
-            component={CourseView}
+            path="/dashboard/my-courses/course-view"
+            component={withRouter(CourseView)}
           />
-          <Route path="/dashboard/mycourses" component={MyCourses} />
+          <Route exact path="/dashboard/my-courses" component={MyCourses} />
           {/* </div> */}
         </Switch>
         {/* <div>

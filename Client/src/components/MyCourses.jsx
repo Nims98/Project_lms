@@ -183,7 +183,7 @@ const MyCourses = () => {
                     return (
                       <Grid item sm={6} md={4} lg={3}>
                         <Link
-                          to="/dashboard/mycourses/courseview"
+                          to="/dashboard/my-courses/course-view"
                           style={{ textDecoration: "none" }}
                         >
                           <Course
@@ -200,6 +200,11 @@ const MyCourses = () => {
             </Fade>
           </Container>
         </div>
+        <Route
+          exact
+          path="/dashboard/my-courses/course-view"
+          component={CourseView}
+        />
       </Switch>
     </Router>
   );

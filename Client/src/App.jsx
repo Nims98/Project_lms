@@ -12,9 +12,9 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          <Route path="/" component={DashBoard} />
+          {/* <Route path="/" component={DashBoard} /> */}
           {/* <EnrollPage /> */}
-          {/* <HomePage /> */}
+          <HomePage />
           {/* <NavBar /> */}
           {/* <MyCourses /> */}
         </Switch>

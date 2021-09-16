@@ -112,16 +112,22 @@ const NavBar = () => {
                     onChange={handleChange}
                   >
                     <MyTab
-                      label="Home"
+                      label="All Courses"
                       component={Link}
-                      to="/dashboard/home "
+                      to="/dashboard/all-courses"
                       value="0"
                     />
                     <MyTab
                       label="My Courses"
                       component={Link}
-                      to="/dashboard/mycourses"
+                      to="/dashboard/my-courses"
                       value="1"
+                    />
+                    <MyTab
+                      label="Profile"
+                      component={Link}
+                      to="/dashboard/profile"
+                      value="2"
                     />
                   </MyTabs>
                 </>

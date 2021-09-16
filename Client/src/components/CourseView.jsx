@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import { Fade } from "@material-ui/core";
 import image from "./../images/pdf.svg";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
   main: {
@@ -39,7 +40,8 @@ const useStyles = makeStyles({
     width: 300,
     minWidth: 300,
     // maxWidth: 300,
-    margin: "20px",
+    marginTop: "60px",
+    marginLeft: "20px",
     height: 300,
   },
   media: {
@@ -85,6 +87,15 @@ const Item = () => {
 const View = ({ info }) => {
   return (
     <Grid item container md={12} xl={12} lg={12}>
+      <Container>
+        <Typography
+          variant="h5"
+          component="h5"
+          style={{ fontWeight: "500", marginTop: "15px", color: "whitesmoke" }}
+        >
+          {info}
+        </Typography>
+      </Container>
       <Container
         style={{
           // width: "1100px",
@@ -98,18 +109,6 @@ const View = ({ info }) => {
           flexDirection: "row",
         }}
       >
-        <Typography
-          variant="h5"
-          component="h5"
-          style={{
-            fontStyle: "normal",
-            fontWeight: "500",
-            marginTop: "15px",
-          }}
-        >
-          {info}
-        </Typography>
-
         <Item />
         <Item />
         <Item />
@@ -160,4 +159,4 @@ const CourseView = () => {
   );
 };
 
-export default CourseView;
+export default withRouter(CourseView);
