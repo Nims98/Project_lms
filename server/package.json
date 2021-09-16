@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/Nims98/Project_lms.git",
   "author": "Nirmala",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
