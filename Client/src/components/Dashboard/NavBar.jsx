@@ -81,10 +81,10 @@ const useStyles = makeStyles({
     // paddingLeft: "10px",
   },
 });
-const NavBar = () => {
+const NavBar = ({ value }) => {
   const classes = useStyles();
 
-  const [selectedTab, setselectedTab] = useState(0);
+  const [selectedTab, setselectedTab] = useState(value);
 
   const handleChange = (e, newIndex) => {
     setselectedTab(newIndex);

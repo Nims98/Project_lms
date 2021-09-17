@@ -9,11 +9,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import "./../App.css";
+import "./../../App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import { Fade } from "@material-ui/core";
-import image from "./../images/pdf.svg";
+import image from "./../../images/pdf.svg";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -126,18 +126,6 @@ const CourseView = () => {
   const classes = useStyles();
   return (
     <div style={{ width: "100vw", marginTop: "80px" }}>
-      {/* <div className={classes.header}>
-        <Router>
-          <NavBar />
-          <Container className={classes.container}>
-            <Switch>
-              <Route path="/" exact />
-              <Route path="/home" component={Home} />
-              <Route path="/mycourses" exact component={MyCourses} />
-            </Switch>
-          </Container>
-        </Router>
-      </div> */}
       <Fade in>
         <div className="root">
           <div className={classes.main}>

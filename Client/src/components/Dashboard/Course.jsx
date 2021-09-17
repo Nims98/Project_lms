@@ -8,7 +8,9 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
     maxWidth: 330,
+    minHeight: 220,
     borderRadius: 10,
+    margin: 10,
   },
 });
 const Course = ({ courseName, courseCode, info }) => {
@@ -17,8 +19,8 @@ const Course = ({ courseName, courseCode, info }) => {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography variant="h2">{courseCode}</Typography>
-        <Typography variant="h4">{courseName}</Typography>
+        <Typography variant="h4">{courseCode}</Typography>
+        <Typography variant="h5">{courseName}</Typography>
         <Typography variant="p">{info}</Typography>
       </CardContent>
       {/* <CardActions>
