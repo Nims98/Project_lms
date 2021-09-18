@@ -1,6 +1,8 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Avatar from "@material-ui/core/Avatar";
+
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
@@ -73,9 +75,20 @@ const SignIn = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography component="h1" variant="h5">
-                  Log in
-                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography component="h1" variant="h4">
+                    Log in
+                  </Typography>
+                  <Avatar fontSize="large" />
+                </Box>
                 <Box
                   component="form"
                   onSubmit={handleSubmit}
@@ -91,7 +104,6 @@ const SignIn = () => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    autoFocus
                   />
                   <Field
                     component={TextField}
@@ -130,7 +142,7 @@ const SignIn = () => {
                   </Button>
                   <Grid container>
                     <Grid item>
-                      <Link href="#" variant="body2">
+                      <Link href="/sign-up" variant="body2">
                         {"Don't have an account? Sign Up"}
                       </Link>
                     </Grid>

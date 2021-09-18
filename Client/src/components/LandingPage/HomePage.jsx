@@ -1,5 +1,5 @@
 import React from "react";
-import "./../App.css";
+import "./../../App.css";
 import { Typography } from "@material-ui/core";
 // import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
@@ -15,7 +15,7 @@ const HomePage = () => {
         </Container>
       </div>
       <div className="right">
-        <div className='top'></div>
+        <div className="top"></div>
         <div className="bottom">
           <LoginForm />
         </div>

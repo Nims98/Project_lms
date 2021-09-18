@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/LandingPage/HomePage";
 import SideBar from "./components/SideBar";
 import DashBoard from "./components/Dashboard/DashBoard";
 import EnrollPage from "./components/Dashboard/EnrollPage";
@@ -7,20 +7,25 @@ import CourseView from "./components/Dashboard/CourseView";
 import NavBar from "./components/Dashboard/NavBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MyCourses from "./components/Dashboard/MyCourses";
-import LoginForm from "./components/LoginForm";
-import SignIn from "./components/test";
+import LoginForm from "./components/LandingPage/LoginForm";
+import Basic from "./components/test";
+import SignUp from "./components/LandingPage/SignUp";
+
 const App = () => {
   return (
     <div>
       <Router>
         <Switch>
-          {/* <SignIn /> */}
+          {/* <Basic /> */}
           {/* <LoginForm /> */}
           {/* <Route path="/" component={DashBoard} /> */}
           {/* <EnrollPage /> */}
-          <HomePage />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/sign-up" component={SignUp} />
+
           {/* <NavBar /> */}
           {/* <MyCourses /> */}
+          {/* <SignUp /> */}
         </Switch>
       </Router>
     </div>
