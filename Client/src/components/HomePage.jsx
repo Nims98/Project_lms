@@ -15,7 +15,10 @@ const HomePage = () => {
         </Container>
       </div>
       <div className="right">
-        <LoginForm />
+        <div className='top'></div>
+        <div className="bottom">
+          <LoginForm />
+        </div>
       </div>
     </div>
   );

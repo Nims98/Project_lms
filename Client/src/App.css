@@ -17,6 +17,30 @@ body {
 
 .root {
     display: flex;
+    flex-direction: row;
+}
+
+.root .left {
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    background: rgb(235, 235, 235);
+}
+
+.root .right {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 50%;
+    background: rgb(0, 73, 139);
+}
+
+.root .right .top {
+    height: 50%;
+}
+
+.root .right .bottom {
+    height: 50%;
 }
 
 .root .main {
@@ -74,23 +98,4 @@ body {
     left: 35%;
     font-family: Arial, Helvetica, sans-serif;
     color: azure;
-}
-
-.root {
-    display: flex;
-    flex-direction: row;
-}
-
-.root .left {
-    display: flex;
-    width: 50%;
-    height: 100vh;
-    background: rgb(235, 235, 235);
-}
-
-.root .right {
-    display: flex;
-    height: 100vh;
-    width: 50%;
-    background: rgb(0, 73, 139);
 }

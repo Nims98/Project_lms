@@ -7,14 +7,18 @@ import CourseView from "./components/Dashboard/CourseView";
 import NavBar from "./components/Dashboard/NavBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MyCourses from "./components/Dashboard/MyCourses";
+import LoginForm from "./components/LoginForm";
+import SignIn from "./components/test";
 const App = () => {
   return (
     <div>
       <Router>
         <Switch>
-          <Route path="/" component={DashBoard} />
+          {/* <SignIn /> */}
+          {/* <LoginForm /> */}
+          {/* <Route path="/" component={DashBoard} /> */}
           {/* <EnrollPage /> */}
-          {/* <HomePage /> */}
+          <HomePage />
           {/* <NavBar /> */}
           {/* <MyCourses /> */}
         </Switch>
