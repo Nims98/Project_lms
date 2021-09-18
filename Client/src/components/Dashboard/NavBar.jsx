@@ -4,6 +4,7 @@ import SchoolIcon from "@material-ui/icons/School";
 import { Tabs, Tab } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import { useState } from "react";
+import "./../../App.css";
 
 const MyTabs = withStyles({
   indicator: {
@@ -19,68 +20,7 @@ const MyTab = withStyles({
   },
 })((props) => <Tab disableRipple {...props} />);
 
-const useStyles = makeStyles({
-  navbar: {
-    width: "100%",
-    height: "80px",
-    display: "flex",
-    background: "linear-gradient(to right, rgb(0, 44, 76), rgb(0, 73, 139))",
-    // zIndex: 2,
-    boxShadow: "0 0 15px rgba(0, 0, 0, 0.4)",
-    position: "fixed",
-  },
-
-  left: {
-    flex: "25%",
-    display: "flex",
-    justifyContent: "left",
-    alignItems: "center",
-    fontFamily: "Arial, Helvetica, sans-serif",
-    color: "azure",
-    paddingLeft: "10px",
-    fontSize: "30px",
-  },
-
-  right: {
-    flex: "25%",
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    padding: "20px",
-  },
-
-  search: {
-    padding: "0 0 0 10px",
-    height: "30px",
-    minWidth: "300px",
-    maxWidth: "500px",
-    borderRadius: "5px 0 0 5px",
-    fontSize: "14px",
-    borderStyle: "none",
-  },
-
-  button: {
-    height: "30px",
-    borderStyle: "none",
-    borderRadius: "0 5px 5px 0",
-    fontSize: "14px",
-    padding: "0 10px 0 10px",
-  },
-  middle: {
-    flex: "50%",
-    height: "50px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "baseline",
-    position: "absolute",
-    top: "32px",
-    left: "35%",
-    // background: "rgb(0,0,0)",
-    fontFamily: "Arial, Helvetica, sans-serif",
-    color: "azure",
-    // paddingLeft: "10px",
-  },
-});
+const useStyles = makeStyles({});
 const NavBar = ({ value }) => {
   const classes = useStyles();
 
@@ -91,13 +31,13 @@ const NavBar = ({ value }) => {
   };
   return (
     <div>
-      <div className={classes.navbar}>
-        <div className={classes.left}>
+      <div className="navbar">
+        <div className="left">
           <SchoolIcon fontSize="large" style={{ marginRight: 10 }} />
           <p>University of Somewhere</p>
         </div>
 
-        <div className={classes.middle}>
+        <div className="right">
           <Switch>
             <Route
               path="/"
@@ -135,14 +75,14 @@ const NavBar = ({ value }) => {
             />
           </Switch>
         </div>
-        <div className={classes.right}>
+        {/* <div className={classes.right}>
           <input
             className={classes.search}
             type="text"
             placeholder="Search Courses"
           />
           <button className={classes.button}>Search</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

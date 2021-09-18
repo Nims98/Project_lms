@@ -19,22 +19,13 @@ const DashBoard = () => {
   const classes = useStyles();
 
   return (
-    <div style={{ display: "flex", top: "80px" }}>
+    <div style={{ display: "flex", top: "80px", background: "white" }}>
       <Router>
         <NavBar value={0} />
         <Switch>
           <Route exact path="/dashboard/all-courses" component={Home} />
-          <Route
-            exact
-            path="/dashboard/my-courses/course-view"
-            component={withRouter(CourseView)}
-          />
           <Route exact path="/dashboard/my-courses" component={MyCourses} />
-          {/* </div> */}
         </Switch>
-        {/* <div>
-          <SideBar className={classes.sidebar} />
-        </div> */}
       </Router>
     </div>
   );

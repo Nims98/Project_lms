@@ -54,41 +54,41 @@ const useStyles = makeStyles({
 const Reqs = () => {
   return (
     <div>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
-      <h2>asdasdad</h2>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
+      <Typography variant="h6">Review</Typography>
     </div>
   );
 };
 const Outs = () => {
   return (
     <div>
-      <Typography variant="h6" component="h1">
-        1.How to built an web app using node
-      </Typography>
-      <Typography variant="h6" component="h1">
-      2. React Basics
-      </Typography>
-      <Typography variant="h6" component="h1">
-        3.User Authentication and Autherization
-      </Typography>
-      <Typography variant="h6" component="h1">
-        4.Mongo DB
-      </Typography>
-      <Typography variant="h6" component="h1">
-        5.How to deploy a project
-      </Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="h6">Outcome</Typography>
     </div>
   );
 };
