@@ -2,6 +2,7 @@ import * as React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Avatar from "@material-ui/core/Avatar";
+import BookIcon from "@material-ui/icons/Book";
 import Fade from "@material-ui/core/Fade";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
@@ -11,10 +12,31 @@ import Container from "@material-ui/core/Container";
 import { createTheme, ThemeProvider } from "@material-ui/core/";
 import { Form, Formik, Field } from "formik";
 import { TextField } from "formik-material-ui";
-
+import Course from "./Dashboard/Course";
+import { useState } from "react";
+import MenuItem from "@material-ui/core/MenuItem";
 const theme = createTheme();
 
-const SignUp = () => {
+const degrees = [
+  {
+    value: "Bsc.",
+    label: "Bsc.",
+  },
+  {
+    value: "Phd",
+    label: "Phd",
+  },
+  {
+    value: "Msc",
+    label: "Msc",
+  },
+];
+const AddCourse = () => {
+  const [degree, setDegree] = useState("Bsc");
+
+  const handleChange = (event) => {
+    setDegree(event.target.value);
+  };
   return (
     <Fade in>
       <div
@@ -28,47 +50,33 @@ const SignUp = () => {
       >
         <Formik
           initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            address: "",
-            password: "",
-            confirmPassword: "",
+            courseName: "",
+            courseCode: "",
+            info: "",
+            instructor: "",
+            degree: "",
+            passcode: "",
           }}
           validate={(values) => {
             const errors = {};
-            if (!values.firstName) {
-              errors.firstName = "Required";
+            if (!values.courseName) {
+              errors.courseName = "Required";
             }
-            if (!values.lastName) {
-              errors.lastName = "Required";
+            if (!values.courseCode) {
+              errors.courseCode = "Required";
             }
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-            ) {
-              errors.email = "Invalid email address";
+            if (!values.instructor) {
+              errors.instructor = "Required";
             }
-            if (!values.password) {
-              errors.password = "Required";
-            }
-            if (!values.confirmPassword) {
-              errors.confirmPassword = "Required";
-            } else if (values.password !== values.confirmPassword) {
-              errors.confirmPassword = "Passwords do not match";
-            }
-            if (!/^[0-9\b]+$/i.test(values.phone)) {
-              errors.phone = "Enter a Valid Phone Number";
-            } else if (values.phone.length !== 10) {
-              errors.phone = "Enter a Valid Phone Number";
+            if (!values.passcode) {
+              errors.passcode = "Required";
             }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               setSubmitting(false);
+              //   values.degree = event.target.value;
               alert(JSON.stringify(values, null, 2));
             }, 500);
           }}
@@ -106,9 +114,9 @@ const SignUp = () => {
                       }}
                     >
                       <Typography component="h1" variant="h4">
-                        Sign Up
+                        Add New Course
                       </Typography>
-                      <Avatar fontSize="large" />
+                      <BookIcon fontSize="large" />
                     </Box>
                     <Box
                       sx={{
@@ -132,28 +140,55 @@ const SignUp = () => {
                           margin="normal"
                           required
                           fullWidth
-                          id="firstName"
-                          label="First Name"
-                          name="firstName"
+                          id="courseCode"
+                          label="Course Code"
+                          name="courseCode"
                         />
                         <Field
                           component={TextField}
                           margin="normal"
                           required
                           fullWidth
-                          id="lastName"
-                          label="Last Name"
-                          name="lastName"
+                          id="courseName"
+                          label="Course Name"
+                          name="courseName"
                         />
                       </Box>
+
+                      <Box
+                        sx={{
+                          "& .MuiTextField-root": { m: 1, width: "25ch" },
+                        }}
+                      >
+                        <Field
+                          component={TextField}
+                          type="text"
+                          name="degree"
+                          label="Degree"
+                          select
+                          variant="standard"
+                          helperText="Please select your degree"
+                          margin="normal"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                        >
+                          {degrees.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                        </Field>
+                      </Box>
+
                       <Field
                         component={TextField}
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
+                        id="instructor"
+                        label="Instructor Name"
+                        name="instructor"
                       />
                       <Box
                         sx={{
@@ -162,46 +197,29 @@ const SignUp = () => {
                           // justifyContent: "center",
                           flexDirection: "row",
                         }}
-                      >
-                        <Field
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                          id="address"
-                          label="Address"
-                          name="address"
-                        />
-                        <Field
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                          id="phone"
-                          label="Phone Number"
-                          name="phone"
-                        />
-                      </Box>
+                      ></Box>
+                      <Field
+                        component={TextField}
+                        margin="normal"
+                        fullWidth
+                        multiline
+                        maxRows={4}
+                        rows={2}
+                        variant="outlined"
+                        id="info"
+                        label="Course Information"
+                        name="info"
+                      />
                       <Field
                         component={TextField}
                         margin="normal"
                         required
                         fullWidth
-                        name="password"
-                        label="Password"
+                        name="passcode"
+                        label="Passcode"
                         type="password"
-                        id="password"
-                        autoComplete="current-password"
+                        id="passcode"
                       />
-                      <Field
-                        component={TextField}
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="confirmPassword"
-                        label="Confirm Password"
-                        type="Password"
-                        id="confirmPassword"
-                      />
-
                       <Button
                         style={{
                           background: "#00498B",
@@ -213,7 +231,7 @@ const SignUp = () => {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                       >
-                        Sign Up
+                        Add Course
                       </Button>
                       <Grid container>
                         <Grid item>
@@ -234,4 +252,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default AddCourse;

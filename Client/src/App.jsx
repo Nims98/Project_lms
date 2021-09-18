@@ -10,23 +10,28 @@ import MyCourses from "./components/Dashboard/MyCourses";
 import LoginForm from "./components/LandingPage/LoginForm";
 import Basic from "./components/test";
 import SignUp from "./components/LandingPage/SignUp";
+import { Fade } from "@material-ui/core";
+import AddCourse from "./components/AddCourse";
 
 const App = () => {
   return (
     <div>
       <Router>
-        <Switch>
-          {/* <Basic /> */}
-          {/* <LoginForm /> */}
-          {/* <Route path="/" component={DashBoard} /> */}
-          {/* <EnrollPage /> */}
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/sign-up" component={SignUp} />
+        <Fade in>
+          <Switch>
+            <AddCourse />
+            {/* <Basic /> */}
+            {/* <LoginForm /> */}
+            {/* <Route path="/" component={DashBoard} /> */}
+            {/* <EnrollPage /> */}
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/sign-up" component={SignUp} />
 
-          {/* <NavBar /> */}
-          {/* <MyCourses /> */}
-          {/* <SignUp /> */}
-        </Switch>
+            {/* <NavBar /> */}
+            {/* <MyCourses /> */}
+            {/* <SignUp /> */}
+          </Switch>
+        </Fade>
       </Router>
     </div>
   );
