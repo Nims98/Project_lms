@@ -1,7 +1,6 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Avatar from "@material-ui/core/Avatar";
 import BookIcon from "@material-ui/icons/Book";
 import Fade from "@material-ui/core/Fade";
 import Link from "@material-ui/core/Link";
@@ -12,7 +11,6 @@ import Container from "@material-ui/core/Container";
 import { createTheme, ThemeProvider } from "@material-ui/core/";
 import { Form, Formik, Field } from "formik";
 import { TextField } from "formik-material-ui";
-import Course from "./Dashboard/Course";
 import { useState } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 const theme = createTheme();
@@ -32,11 +30,15 @@ const degrees = [
   },
 ];
 const AddCourse = () => {
-  const [degree, setDegree] = useState("Bsc");
+  const [courseData, setcourseData] = useState({
+    courseName: "",
+    courseCode: "",
+    info: "",
+    instructor: "",
+    degree: "",
+    passcode: "",
+  });
 
-  const handleChange = (event) => {
-    setDegree(event.target.value);
-  };
   return (
     <Fade in>
       <div
@@ -78,7 +80,9 @@ const AddCourse = () => {
               setSubmitting(false);
               //   values.degree = event.target.value;
               alert(JSON.stringify(values, null, 2));
-            }, 500);
+              setcourseData(values);
+              console.log(courseData);
+            }, 100);
           }}
         >
           {({ submitForm }) => (
@@ -204,7 +208,7 @@ const AddCourse = () => {
                         fullWidth
                         multiline
                         maxRows={4}
-                        rows={2}
+                        minRows={2}
                         variant="outlined"
                         id="info"
                         label="Course Information"

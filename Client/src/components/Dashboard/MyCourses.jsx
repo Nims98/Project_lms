@@ -14,9 +14,9 @@ import CourseView from "./CourseView";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-
 import data from "./data.json";
-
+import { useSelector } from "react-redux";
+import { abcourses } from "../../index.js";
 const useStyles = makeStyles({
   container: {
     display: "flex",
@@ -32,7 +32,9 @@ const useStyles = makeStyles({
   },
 });
 const Courses = () => {
-  const [courses, setCourses] = useState(data);
+  const allCourses = useSelector((state) => state.allCourses);
+  console.log(allCourses);
+  const [courses, setCourses] = useState(abcourses);
   const [Search, setSearch] = useState("");
   const classes = useStyles();
 
@@ -55,7 +57,7 @@ const Courses = () => {
             <TextField
               // placeholder="Search"
               size="small"
-              style={{ width: "40%"}}
+              style={{ width: "40%" }}
               color="inherit"
               variant="outlined"
               label="Search"

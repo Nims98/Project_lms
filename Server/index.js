@@ -4,11 +4,11 @@ import cors from "cors";
 import coursesRoutes from "./routes/courses.js";
 
 const app = express();
+app.use(cors());
 app.use("/all-courses", coursesRoutes);
 
 app.use(express.json({ limit: "30mb", extended: "true" }));
 app.use(express.urlencoded({ limit: "30mb", extended: "true" }));
-app.use(cors());
 
 const CONNETION_URL =
     "mongodb+srv://Nirmala:nirmala1234@cluster0.h6ako.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
