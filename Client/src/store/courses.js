@@ -21,18 +21,7 @@ const CourseSilce = createSlice({
             courses.lastFetch = Date.now();
         },
         courseAdded: (courses, action) => {
-            courses.list.push({
-                id: action.payload.id,
-                courseName: action.payload.courseName,
-                courseCode: action.payload.courseCode,
-                info: action.payload.info,
-                instructor: {
-                    name: action.payload.instructor.name,
-                    qualifications: action.payload.instructor.qualifications,
-                },
-                learningOutcomes: action.payload.learningOutcomes,
-                passcode: action.payload.passcode,
-            });
+            courses.list.push(action.payload);
         },
     },
 });

@@ -14,7 +14,7 @@ import { TextField } from "formik-material-ui";
 import { useState } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useDispatch } from "react-redux";
-import { courseAdded } from "../store/courses.js";
+import { addCourse } from "../store/courses.js";
 import * as actions from "./../api/api.js";
 import { useEffect } from "react";
 const theme = createTheme();
@@ -85,25 +85,20 @@ const AddCourse = () => {
             setTimeout(() => {
               setSubmitting(false);
 
-              // dispatch(
-              //   actions.apiCallBegan({
-              //     url: "/all-courses",
-              //     method: "post",
-              //     data: {
-              //       _id: values._id,
-              //       courseName: values.courseName,
-              //       courseCode: values.courseCode,
-              //       info: values.info,
-              //       instructor: {
-              //         name: values.instructor,
-              //         qualifications: values.degree,
-              //       },
-              //       learningOutcomes: values.learningOutcomes,
-              //       passcode: values.passcode,
-              //     },
-              //     Onsuccess: "courses/courseAdded",
-              //   })
-              // );
+              dispatch(
+                addCourse({
+                  _id: values._id,
+                  courseName: values.courseName,
+                  courseCode: values.courseCode,
+                  info: values.info,
+                  instructor: {
+                    name: values.instructor,
+                    qualifications: values.degree,
+                  },
+                  learningOutcomes: values.learningOutcomes,
+                  passcode: values.passcode,
+                })
+              );
               // useEffect(()=>{
 
               // },[])
