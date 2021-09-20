@@ -13,6 +13,10 @@ import { Form, Formik, Field } from "formik";
 import { TextField } from "formik-material-ui";
 import { useState } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
+import { useDispatch } from "react-redux";
+import { courseAdded } from "../store/courses.js";
+import * as actions from "./../api/api.js";
+import { useEffect } from "react";
 const theme = createTheme();
 
 const degrees = [
@@ -30,6 +34,7 @@ const degrees = [
   },
 ];
 const AddCourse = () => {
+  const dispatch = useDispatch();
   const [courseData, setcourseData] = useState({
     courseName: "",
     courseCode: "",
@@ -52,6 +57,7 @@ const AddCourse = () => {
       >
         <Formik
           initialValues={{
+            _id: "",
             courseName: "",
             courseCode: "",
             info: "",
@@ -78,10 +84,33 @@ const AddCourse = () => {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               setSubmitting(false);
+
+              // dispatch(
+              //   actions.apiCallBegan({
+              //     url: "/all-courses",
+              //     method: "post",
+              //     data: {
+              //       _id: values._id,
+              //       courseName: values.courseName,
+              //       courseCode: values.courseCode,
+              //       info: values.info,
+              //       instructor: {
+              //         name: values.instructor,
+              //         qualifications: values.degree,
+              //       },
+              //       learningOutcomes: values.learningOutcomes,
+              //       passcode: values.passcode,
+              //     },
+              //     Onsuccess: "courses/courseAdded",
+              //   })
+              // );
+              // useEffect(()=>{
+
+              // },[])
               //   values.degree = event.target.value;
+              // setcourseData(values);
+              console.log(values.courseCode);
               alert(JSON.stringify(values, null, 2));
-              setcourseData(values);
-              console.log(courseData);
             }, 100);
           }}
         >

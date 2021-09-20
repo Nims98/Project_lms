@@ -7,15 +7,15 @@ import * as actions from "./api.js";
 import axios from "axios";
 
 const api =
-    ({ dispatch, getState }) =>
+    ({ dispatch }) =>
     (next) =>
     async(action) => {
         if (action.type !== actions.apiCallBegan.type) {
             return next(action);
         }
+        const { url, method, data, Onstart, Onsuccess, OnError } = action.payload;
+        if (Onstart) dispatch({ type: Onstart });
         next(action);
-        const { url, method, data, Onsuccess, OnError } = action.payload;
-
         try {
             const response = await axios.request({
                 baseURL: "http://localhost:5000/",

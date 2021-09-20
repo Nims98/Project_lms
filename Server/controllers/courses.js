@@ -1,6 +1,6 @@
 import Course from "../models/courses.js";
 // import data from "./../data.json";
-const data = [{
+const courses = [{
         courseName: "Computer Networks",
         courseCode: "EE5201",
         info: "In this course you will learn how to properly develop an web application",
@@ -41,7 +41,7 @@ const data = [{
         info: "In this course you will learn how to properly develop an web application",
     },
     {
-        courseName: "Database Systems",
+        courseName: "coursesbase Systems",
         courseCode: "EE5201",
         info: "In this course you will learn how to properly develop an web application",
     },
@@ -114,13 +114,19 @@ export const getCourses = async(req, res) => {
     // } catch (error) {
     //     res.status(404).json({ message: error.message });
     // }
-    const courses = data;
-    res.status(200).json(courses);
+    const courses = courses;
+    // res.status(200).json(courses);
+    // res.send("hello");
 };
 
 export const createCourses = async(req, res) => {
+    // const course = req.body;
     const course = req.body;
-    console.log(course);
+    courses.push(course);
+
+    res.json(course);
+    // res.send(course);
+    // console.log(course);
     // const newCourse = Course(course);
     // try {
     //     await newCourse.save();

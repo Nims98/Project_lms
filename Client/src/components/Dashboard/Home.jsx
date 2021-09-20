@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Fade, Typography, Grid, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Course from "./Course";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import EnrollPage from "./EnrollPage";
 import { TextField } from "@material-ui/core";
-import data from "./data.json";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import { useSelector, useDispatch } from "react-redux";
+import { coursesReceived } from "./../../store/courses.js";
+
 const useStyles = makeStyles({
   container: {
     display: "flex",
     background: "whitesmoke",
-    // justifyContent: "left",
-    // height: "100%",
     height: "100vh",
-    // marginTop: "80px",
-
     overflow: "hidden",
     overflowY: "scroll",
   },
@@ -24,7 +22,15 @@ const useStyles = makeStyles({
 
 const Allcourses = () => {
   const classes = useStyles();
-  const [courses, setCourses] = useState(data);
+
+  const { payload } = useSelector(coursesReceived);
+  const allCourses = payload.courses;
+
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    setCourses(allCourses);
+  }, [allCourses]);
+
   const [Search, setSearch] = useState("");
 
   return (
@@ -36,7 +42,6 @@ const Allcourses = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-              // background: "white",
               margin: "20px 0 20px 15px",
               padding: 0,
             }}

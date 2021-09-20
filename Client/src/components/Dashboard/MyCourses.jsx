@@ -29,14 +29,15 @@ const useStyles = makeStyles({
 const Courses = () => {
   const dispatch = useDispatch();
 
-  const abc = useSelector(coursesReceived);
-  console.log(abc.payload.courses);
+  const { payload } = useSelector(coursesReceived);
+  const myCourses = payload.courses;
+  console.log(myCourses);
 
-  const [courses, setCourses] = useState(abc.payload.courses);
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    setCourses(abc.payload.courses);
-  }, [abc.payload.courses]);
+    setCourses(myCourses);
+  }, [myCourses]);
 
   const [Search, setSearch] = useState("");
   const classes = useStyles();

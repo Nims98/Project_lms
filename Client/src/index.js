@@ -1,31 +1,45 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { addCourse, fetchCourses } from "./store/courses.js";
 import configureStore from "./store/configureStore.js";
 import { Provider } from "react-redux";
-import * as actions from "./api/api.js";
+import { addCourse } from "./store/courses.js";
+
 const store = configureStore();
 
 store.dispatch(
-  actions.apiCallBegan({
-    url: "/all-courses",
-    // method: "get",
-    // data: {},
-    Onsuccess: "courses/coursesReceived",
+  addCourse({
+    _id: "action.payload._id",
+    courseName: "action.payload.courseName",
+    courseCode: "action.payload.courseCode",
+    info: "action.payload.info",
+    instructor: {
+      name: "action.payload.instructor.name",
+      qualifications: "action.payload.instructor.qualifications",
+    },
+    learningOutcomes: "action.payload.learningOutcomes",
+    passcode: "action.payload.passcode",
   })
 );
+
+// store.dispatch(loadCourses());
+
+// setTimeout(() => {
+//   store.dispatch(loadCourses());
+// }, 3000);
+
 // store.dispatch(
 //   actions.apiCallBegan({
 //     url: "/all-courses",
 //     method: "post",
+//     Onsuccess: "courses/courseAdded",
 //     data: { name: "nirmala" },
-//     Onsuccess: "courses/addCourse",
 //   })
 // );
-store.subscribe(() => {
-  console.log("store changed", store.getState());
-});
+
+// store.subscribe(() => {
+//   console.log("store changed", store.getState());
+// });
 
 // store.dispatch(
 //   addCourse({

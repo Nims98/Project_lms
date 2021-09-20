@@ -19,10 +19,10 @@ const App = () => {
       <Router>
         <Fade in>
           <Switch>
-            {/* <AddCourse /> */}
+            <AddCourse />
             {/* <Basic /> */}
             {/* <LoginForm /> */}
-            <Route path="/" component={DashBoard} />
+            {/* <Route path="/" component={DashBoard} /> */}
             {/* <EnrollPage /> */}
             {/* <Route exact path="/" component={HomePage} /> */}
             {/* <Route exact path="/sign-up" component={SignUp} /> */}

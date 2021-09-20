@@ -1,43 +1,70 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiCallBegan } from "../api/api";
 
 const CourseSilce = createSlice({
     name: "courses",
-    initialState: [],
+    initialState: {
+        list: [],
+        loading: false,
+        lastFetch: null,
+    },
     reducers: {
+        coursesRequested: (courses, action) => {
+            courses.loading = true;
+        },
+        coursesRequestedFailed: (courses, action) => {
+            courses.loading = false;
+        },
         coursesReceived: (courses, action) => {
-            return action.payload;
+            courses.list = action.payload;
+            courses.loading = false;
+            courses.lastFetch = Date.now();
         },
-        addCourse: (courses, action) => {
-            courses.push({
-                _id: "action.payload._id",
-                courseName: "action.payload.courseName",
-                courseCode: "action.payload.courseCode",
-                info: "action.payload.info",
+        courseAdded: (courses, action) => {
+            courses.list.push({
+                id: action.payload.id,
+                courseName: action.payload.courseName,
+                courseCode: action.payload.courseCode,
+                info: action.payload.info,
                 instructor: {
-                    name: "action.payload.instructor.name",
-                    qualifications: "action.payload.instructor.qualifications",
+                    name: action.payload.instructor.name,
+                    qualifications: action.payload.instructor.qualifications,
                 },
-                learningOutcomes: "action.payload.learningOutcomes",
-                passcode: "action.payload.passcode",
-                // _id: action.payload._id,
-                // courseName: action.payload.courseName,
-                // courseCode: action.payload.courseCode,
-                // info: action.payload.info,
-                // instructor: {
-                //     name: action.payload.instructor.name,
-                //     qualifications: action.payload.instructor.qualifications,
-                // },
-                // learningOutcomes: action.payload.learningOutcomes,
-                // passcode: action.payload.passcode,
+                learningOutcomes: action.payload.learningOutcomes,
+                passcode: action.payload.passcode,
             });
-        },
-
-        fetchCourses: (courses, action) => {
-            return action.payload;
         },
     },
 });
-
-export const { addCourse, fetchCourses, coursesReceived } = CourseSilce.actions;
+export const {
+    courseAdded,
+    coursesReceived,
+    coursesRequested,
+    coursesRequestedFailed,
+} = CourseSilce.actions;
 
 export default CourseSilce.reducer;
+
+//Action creators
+const url = "/all-courses";
+
+export const loadCourses = () => (dispatch, getState) => {
+    const { lastFetch } = getState().courses;
+    console.log(lastFetch);
+    dispatch(
+        apiCallBegan({
+            url,
+            Onstart: coursesRequested.type,
+            Onsuccess: coursesReceived.type,
+            OnError: coursesRequestedFailed.type,
+        })
+    );
+};
+
+export const addCourse = (course) =>
+    apiCallBegan({
+        url,
+        method: "post",
+        data: course,
+        Onsuccess: courseAdded.type,
+    });
