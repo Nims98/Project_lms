@@ -7,7 +7,7 @@ import * as actions from "./api.js";
 import axios from "axios";
 
 const api =
-    ({ dispatch }) =>
+    ({ dispatch, getState }) =>
     (next) =>
     async(action) => {
         if (action.type !== actions.apiCallBegan.type) {
@@ -29,9 +29,9 @@ const api =
             if (Onsuccess) dispatch({ type: Onsuccess, payload: response.data });
         } catch (error) {
             //General
-            dispatch(actions.apiCallFailed(error));
+            dispatch(actions.apiCallFailed(error.message));
             //Specific
-            if (OnError) dispatch({ type: OnError, payload: error });
+            if (OnError) dispatch({ type: OnError, payload: error.message });
         }
     };
 

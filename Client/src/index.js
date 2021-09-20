@@ -4,7 +4,6 @@ import App from "./App";
 import { addCourse, fetchCourses } from "./store/courses.js";
 import configureStore from "./store/configureStore.js";
 import { Provider } from "react-redux";
-// import data from "./components/Dashboard/data.json";
 import * as actions from "./api/api.js";
 const store = configureStore();
 
@@ -16,9 +15,16 @@ store.dispatch(
     Onsuccess: "courses/coursesReceived",
   })
 );
-export const abcourses = store.getState().allCourses;
+// store.dispatch(
+//   actions.apiCallBegan({
+//     url: "/all-courses",
+//     method: "post",
+//     data: { name: "nirmala" },
+//     Onsuccess: "courses/addCourse",
+//   })
+// );
 store.subscribe(() => {
-  console.log("store changed");
+  console.log("store changed", store.getState());
 });
 
 // store.dispatch(

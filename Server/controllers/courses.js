@@ -120,11 +120,12 @@ export const getCourses = async(req, res) => {
 
 export const createCourses = async(req, res) => {
     const course = req.body;
-    const newCourse = Course(course);
-    try {
-        await newCourse.save();
-        res.status(201).json(newCourse);
-    } catch (error) {
-        res.status(409).json({ message: error.message });
-    }
+    console.log(course);
+    // const newCourse = Course(course);
+    // try {
+    //     await newCourse.save();
+    //     res.status(201).json(newCourse);
+    // } catch (error) {
+    //     res.status(409).json({ message: error.message });
+    // }
 };

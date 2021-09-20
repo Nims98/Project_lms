@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Typography,
   Fade,
@@ -11,35 +11,37 @@ import Course from "./Course";
 import { useState } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import CourseView from "./CourseView";
-import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import data from "./data.json";
-import { useSelector } from "react-redux";
-import { abcourses } from "../../index.js";
+import { useSelector, useDispatch } from "react-redux";
+import { coursesReceived } from "./../../store/courses.js";
+
 const useStyles = makeStyles({
   container: {
     display: "flex",
     background: "whitesmoke",
-    // flexDirection: "column",
-    // justifyContent: "center",
-    // height: "100%",
     height: "100vh",
-    // marginTop: "80px",
-
     overflow: "hidden",
     overflowY: "scroll",
   },
 });
 const Courses = () => {
-  const allCourses = useSelector((state) => state.allCourses);
-  console.log(allCourses);
-  const [courses, setCourses] = useState(abcourses);
+  const dispatch = useDispatch();
+
+  const abc = useSelector(coursesReceived);
+  console.log(abc.payload.courses);
+
+  const [courses, setCourses] = useState(abc.payload.courses);
+
+  useEffect(() => {
+    setCourses(abc.payload.courses);
+  }, [abc.payload.courses]);
+
   const [Search, setSearch] = useState("");
   const classes = useStyles();
 
   return (
-    // <div style={{ width: "100vw" }}>
     <Container className={classes.container}>
       <Fade in>
         <div style={{ marginTop: "80px", padding: "15px", width: "100vw" }}>
@@ -48,14 +50,12 @@ const Courses = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-              // background: "white",
               margin: "20px 0 20px 15px",
               padding: 0,
             }}
           >
             <Typography variant="h4">My Courses</Typography>
             <TextField
-              // placeholder="Search"
               size="small"
               style={{ width: "40%" }}
               color="inherit"
@@ -102,7 +102,6 @@ const Courses = () => {
         </div>
       </Fade>
     </Container>
-    // </div>
   );
 };
 const MyCourses = () => {

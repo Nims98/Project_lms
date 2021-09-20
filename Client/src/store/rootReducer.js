@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 
-import allCourses from "./courses.js";
+import courses from "./courses.js";
 
-export default combineReducers({ allCourses });
+export default combineReducers({ courses });

@@ -9,16 +9,26 @@ const CourseSilce = createSlice({
         },
         addCourse: (courses, action) => {
             courses.push({
-                _id: action.payload._id,
-                courseName: action.payload.courseName,
-                courseCode: action.payload.courseCode,
-                info: action.payload.info,
+                _id: "action.payload._id",
+                courseName: "action.payload.courseName",
+                courseCode: "action.payload.courseCode",
+                info: "action.payload.info",
                 instructor: {
-                    name: action.payload.instructor.name,
-                    qualifications: action.payload.instructor.qualifications,
+                    name: "action.payload.instructor.name",
+                    qualifications: "action.payload.instructor.qualifications",
                 },
-                learningOutcomes: action.payload.learningOutcomes,
-                passcode: action.payload.passcode,
+                learningOutcomes: "action.payload.learningOutcomes",
+                passcode: "action.payload.passcode",
+                // _id: action.payload._id,
+                // courseName: action.payload.courseName,
+                // courseCode: action.payload.courseCode,
+                // info: action.payload.info,
+                // instructor: {
+                //     name: action.payload.instructor.name,
+                //     qualifications: action.payload.instructor.qualifications,
+                // },
+                // learningOutcomes: action.payload.learningOutcomes,
+                // passcode: action.payload.passcode,
             });
         },
 
