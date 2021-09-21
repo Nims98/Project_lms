@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import reducer from "./rootReducer.js";
-import api from "../api/index.js";
+import api from "../middleware/index.js";
 import coursesReducer from "./courses.js";
 
 export default function() {

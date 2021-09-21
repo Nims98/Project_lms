@@ -11,12 +11,10 @@ import Container from "@material-ui/core/Container";
 import { createTheme, ThemeProvider } from "@material-ui/core/";
 import { Form, Formik, Field } from "formik";
 import { TextField } from "formik-material-ui";
-import { useState } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useDispatch } from "react-redux";
 import { addCourse } from "../store/courses.js";
-import * as actions from "./../api/api.js";
-import { useEffect } from "react";
+
 const theme = createTheme();
 
 const degrees = [
@@ -35,14 +33,6 @@ const degrees = [
 ];
 const AddCourse = () => {
   const dispatch = useDispatch();
-  const [courseData, setcourseData] = useState({
-    courseName: "",
-    courseCode: "",
-    info: "",
-    instructor: "",
-    degree: "",
-    passcode: "",
-  });
 
   return (
     <Fade in>
@@ -87,25 +77,32 @@ const AddCourse = () => {
 
               dispatch(
                 addCourse({
-                  _id: values._id,
+                  // _id: Date.now(),
                   courseName: values.courseName,
                   courseCode: values.courseCode,
                   info: values.info,
                   instructor: {
-                    name: values.instructor,
                     qualifications: values.degree,
+                    name: values.instructor,
                   },
                   learningOutcomes: values.learningOutcomes,
                   passcode: values.passcode,
                 })
               );
               // useEffect(()=>{
-
               // },[])
               //   values.degree = event.target.value;
               // setcourseData(values);
               console.log(values.courseCode);
-              alert(JSON.stringify(values, null, 2));
+              alert(
+                ` Course Name : ${values.courseName}
+                  Course Code : ${values.courseCode}
+                  Info : ${values.info}
+                  Instructor Name : ${values.instructor}
+                  Degree : ${values.degree}
+                  Learning Outcomes: ${values.learningOutcomes}
+                  Passcode: ${values.passcode}`
+              );
             }, 100);
           }}
         >

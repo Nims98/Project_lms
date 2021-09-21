@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import Course from "./Course";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import EnrollPage from "./EnrollPage";
-import { TextField } from "@material-ui/core";
+import { TextField, CircularProgress } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,7 +24,7 @@ const Allcourses = () => {
   const classes = useStyles();
 
   const { payload } = useSelector(coursesReceived);
-  const allCourses = payload.courses;
+  const allCourses = payload.courses.list;
 
   const [courses, setCourses] = useState([]);
   useEffect(() => {
@@ -33,7 +33,9 @@ const Allcourses = () => {
 
   const [Search, setSearch] = useState("");
 
-  return (
+  return !allCourses.length ? (
+    <CircularProgress />
+  ) : (
     <Container className={classes.container}>
       <Fade in>
         <div style={{ marginTop: "80px", padding: "15px", width: "100vw" }}>

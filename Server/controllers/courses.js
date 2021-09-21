@@ -107,14 +107,14 @@ const courses = [{
     },
 ];
 export const getCourses = async(req, res) => {
-    // try {
-    //     const courses = await Course.find();
+    try {
+        const courses = await Course.find();
 
-    //     res.status(200).json(courses);
-    // } catch (error) {
-    //     res.status(404).json({ message: error.message });
-    // }
-    const courses = courses;
+        res.status(200).json(courses);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+    // const courses = courses;
     // res.status(200).json(courses);
     // res.send("hello");
 };

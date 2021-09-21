@@ -5,6 +5,7 @@ import {
   Grid,
   Container,
   TextField,
+  CircularProgress,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Course from "./Course";
@@ -30,7 +31,7 @@ const Courses = () => {
   const dispatch = useDispatch();
 
   const { payload } = useSelector(coursesReceived);
-  const myCourses = payload.courses;
+  const myCourses = payload.courses.list;
   console.log(myCourses);
 
   const [courses, setCourses] = useState([]);
@@ -42,7 +43,9 @@ const Courses = () => {
   const [Search, setSearch] = useState("");
   const classes = useStyles();
 
-  return (
+  return !myCourses.length ? (
+    <CircularProgress />
+  ) : (
     <Container className={classes.container}>
       <Fade in>
         <div style={{ marginTop: "80px", padding: "15px", width: "100vw" }}>
