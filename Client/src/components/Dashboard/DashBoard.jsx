@@ -23,7 +23,7 @@ const DashBoard = () => {
       <Router>
         <NavBar value={0} />
         <Switch>
-          <Route exact path="/dashboard/all-courses" component={Home} />
+          <Route path="/dashboard/all-courses" component={Home} />
           <Route exact path="/dashboard/my-courses" component={MyCourses} />
         </Switch>
       </Router>

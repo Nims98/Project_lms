@@ -67,8 +67,9 @@ const Item = () => {
             Lecture
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas,
+            modi fugiat perferendis explicabo blanditiis, facilis suscipit
+            laudantium
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -139,29 +140,29 @@ const CourseView = () => {
           <div className={classes.side}>
             <Container style={{ background: "teal", width: "80%" }}>
               <Card className={classes.root}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Word of the Day
-                </Typography>
-                <Typography variant="h5" component="div">
-                  belent
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  adjective
-                </Typography>
-                <Typography variant="body2">
-                  well meaning and kindly.
-                  <br />
-                  {'"a benevolent smile"'}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
+                <CardContent>
+                  <Typography
+                    sx={{ fontSize: 14 }}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    Word of the Day
+                  </Typography>
+                  <Typography variant="h5" component="div">
+                    belent
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    adjective
+                  </Typography>
+                  <Typography variant="body2">
+                    well meaning and kindly.
+                    <br />
+                    {'"a benevolent smile"'}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small">Learn More</Button>
+                </CardActions>
               </Card>
             </Container>
           </div>
@@ -171,4 +172,4 @@ const CourseView = () => {
   );
 };
 
-export default withRouter(CourseView);
+export default CourseView;

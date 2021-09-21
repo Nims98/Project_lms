@@ -14,7 +14,6 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import CourseView from "./CourseView";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import data from "./data.json";
 import { useSelector, useDispatch } from "react-redux";
 import { coursesReceived } from "./../../store/courses.js";
 
@@ -116,7 +115,6 @@ const MyCourses = () => {
       <Switch>
         <Route exact path="/dashboard/my-courses" component={Courses} />
         <Route
-          exact
           path="/dashboard/my-courses/course-view"
           component={CourseView}
         />
