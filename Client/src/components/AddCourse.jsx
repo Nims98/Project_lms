@@ -43,8 +43,7 @@ const AddCourse = () => {
           height: "100vh",
           width: "100vw",
           alignItems: "center",
-        }}
-      >
+        }}>
         <Formik
           initialValues={{
             _id: "",
@@ -104,8 +103,7 @@ const AddCourse = () => {
                   Passcode: ${values.passcode}`
               );
             }, 100);
-          }}
-        >
+          }}>
           {({ submitForm }) => (
             <ThemeProvider theme={theme}>
               <Container
@@ -117,8 +115,7 @@ const AddCourse = () => {
                   borderRadius: "10px",
                   padding: "20px",
                   width: "700px",
-                }}
-              >
+                }}>
                 <CssBaseline />
                 <Form>
                   <Box
@@ -127,8 +124,7 @@ const AddCourse = () => {
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
-                    }}
-                  >
+                    }}>
                     <Box
                       sx={{
                         display: "flex",
@@ -136,8 +132,7 @@ const AddCourse = () => {
                         alignItems: "center",
                         width: "100%",
                         justifyContent: "space-between",
-                      }}
-                    >
+                      }}>
                       <Typography component="h1" variant="h4">
                         Add New Course
                       </Typography>
@@ -150,16 +145,14 @@ const AddCourse = () => {
                         flexDirection: "column",
                         justifyContent: "center",
                         width: "100%",
-                      }}
-                    >
+                      }}>
                       <Box
                         sx={{
                           // width: "100%",
                           display: "flex",
                           // justifyContent: "center",
                           flexDirection: "row",
-                        }}
-                      >
+                        }}>
                         <Field
                           component={TextField}
                           margin="normal"
@@ -183,8 +176,7 @@ const AddCourse = () => {
                       <Box
                         sx={{
                           "& .MuiTextField-root": { m: 1, width: "25ch" },
-                        }}
-                      >
+                        }}>
                         <Field
                           component={TextField}
                           type="text"
@@ -196,8 +188,7 @@ const AddCourse = () => {
                           margin="normal"
                           InputLabelProps={{
                             shrink: true,
-                          }}
-                        >
+                          }}>
                           {degrees.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
                               {option.label}
@@ -221,8 +212,7 @@ const AddCourse = () => {
                           display: "flex",
                           // justifyContent: "center",
                           flexDirection: "row",
-                        }}
-                      ></Box>
+                        }}></Box>
                       <Field
                         component={TextField}
                         margin="normal"
@@ -254,14 +244,13 @@ const AddCourse = () => {
                         onClick={submitForm}
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                      >
+                        sx={{ mt: 3, mb: 2 }}>
                         Add Course
                       </Button>
                       <Grid container>
                         <Grid item>
                           <Link href="#" variant="body2">
-                            {"Go to Log In Page"}
+                            {/* {"Go to Log In Page"} */}
                           </Link>
                         </Grid>
                       </Grid>

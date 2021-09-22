@@ -11,7 +11,7 @@ import MyCourses from "./components/Dashboard/MyCourses";
 // import Basic from "./components/test";
 import SignUp from "./components/Auth/SignUp";
 // import DashBoard from "./components/Dashboard/DashBoard";
-// import AddCourse from "./components/AddCourse";
+import AddCourse from "./components/AddCourse";
 import Home from "./components/Dashboard/Home";
 
 const App = () => {
@@ -24,16 +24,11 @@ const App = () => {
           <Switch>
             <Route exact path="/dashboard/all-courses" component={Home} />
             <Route exact path="/dashboard/my-courses" component={MyCourses} />
-            <Route
-              path="/dashboard/all-courses/enroll-course"
-              component={EnrollPage}
-            />
-            <Route
-              path="/dashboard/my-courses/course-view"
-              component={CourseView}
-            />
+            <Route path="/dashboard/all-courses/enroll-course" component={EnrollPage} />
+            <Route path="/dashboard/my-courses/course-view" component={CourseView} />
             <Route exact path="/" component={HomePage} />
             <Route exact path="/sign-up" component={SignUp} />
+            <Route exact path="/add-course" component={AddCourse} />
             {/* <AddCourse /> */}
           </Switch>
         </Fade>
