@@ -9,7 +9,7 @@ import NavBar from "./components/Dashboard/NavBar";
 import MyCourses from "./components/Dashboard/MyCourses";
 // import LoginForm from "./components/LandingPage/LoginForm";
 // import Basic from "./components/test";
-import SignUp from "./components/LandingPage/SignUp";
+import SignUp from "./components/Auth/SignUp";
 // import DashBoard from "./components/Dashboard/DashBoard";
 // import AddCourse from "./components/AddCourse";
 import Home from "./components/Dashboard/Home";

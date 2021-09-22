@@ -90,13 +90,29 @@ body {
     font-size: 30px;
 }
 
-.navbar .right {
-    flex: 75%;
+.navbar .middle {
+    flex: 50%;
     display: flex;
+    /* background: black; */
     justify-content: center;
     position: absolute;
     top: 32px;
     left: 35%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: azure;
+}
+
+.navbar .right {
+    flex: 25%;
+    display: flex;
+    /* background: black; */
+    justify-content: flex-end;
+    align-items: center;
+    width: 25%;
+    height: 80px;
+    position: absolute;
+    /* top: 32px; */
+    left: 75%;
     font-family: Arial, Helvetica, sans-serif;
     color: azure;
 }

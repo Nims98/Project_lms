@@ -42,8 +42,7 @@ const Allcourses = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-      }}
-    >
+      }}>
       <CircularProgress size={80} />
     </div>
   ) : (
@@ -58,8 +57,7 @@ const Allcourses = () => {
                 justifyContent: "space-between",
                 margin: "20px 0 20px 15px",
                 padding: 0,
-              }}
-            >
+              }}>
               <Typography variant="h4">All Courses</Typography>
               <TextField
                 style={{ width: "40%" }}
@@ -83,25 +81,13 @@ const Allcourses = () => {
               {courses
                 .filter((val) => {
                   if (Search === "") return val;
-                  else if (
-                    val.courseName
-                      .toLocaleLowerCase()
-                      .includes(Search.toLocaleLowerCase())
-                  )
-                    return val;
+                  else if (val.courseName.toLocaleLowerCase().includes(Search.toLocaleLowerCase())) return val;
                 })
                 .map((course) => {
                   return (
                     <Grid item sm={6} md={4} lg={3}>
-                      <Link
-                        to="/dashboard/all-courses/enroll-course"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <Course
-                          courseName={course.courseName}
-                          courseCode={course.courseCode}
-                          info={course.info}
-                        />
+                      <Link to="/dashboard/all-courses/enroll-course" style={{ textDecoration: "none" }}>
+                        <Course courseName={course.courseName} courseCode={course.courseCode} info={course.info} />
                       </Link>
                     </Grid>
                   );

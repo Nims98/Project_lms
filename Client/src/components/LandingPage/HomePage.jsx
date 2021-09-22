@@ -3,7 +3,7 @@ import "./../../App.css";
 import { Typography } from "@material-ui/core";
 import { Fade } from "@material-ui/core";
 import LoginForm from "./LoginForm";
-import SignUp from "./SignUp";
+import SignUp from "./../Auth/SignUp";
 import { Container } from "@material-ui/core";
 const HomePage = () => {
   return (
