@@ -14,7 +14,6 @@ const MyTabs = withStyles({
     justifyContent: "center",
     "%>span": {
       maxWidth: 40,
-      // width: "100%",
     },
   },
 })(Tabs);
@@ -71,6 +70,7 @@ const Reqs = () => {
     </div>
   );
 };
+
 const Outs = () => {
   return (
     <div>
@@ -92,6 +92,7 @@ const Outs = () => {
     </div>
   );
 };
+
 const EnrollPage = () => {
   const [course, setCourse] = useState({
     courseName: "Web Application Development",
@@ -103,97 +104,99 @@ const EnrollPage = () => {
       qualifications: "Bsc. Engineering in Software",
     },
   });
+
   const [selectedTab, setselectedTab] = useState(0);
 
   const handleChange = (e, newIndex) => {
     setselectedTab(newIndex);
   };
   const classes = useStyles();
-  return (
-    <div style={{ width: "100vw", marginTop: "80px" }}>
-      <Fade in>
-        <Container>
-          <Container className={classes.root}>
-            <Typography variant="h3">{course.courseName}</Typography>
-          </Container>
 
-          <Container className={classes.root1}>
-            <Grid container spacing={7} className={classes.grids}>
-              <Grid item md={3}>
-                <Paper
-                  variant="outlined"
-                  elevation={0}
-                  style={{ padding: "15px" }}
-                >
-                  <Typography variant="h2">{course.courseCode}</Typography>
-                  <Typography variant="h4">{course.courseName}</Typography>
-                  <Typography variant="p">{course.info}</Typography>
-                </Paper>
-              </Grid>
-              <Grid item md={5}>
-                <Paper
-                  variant="outlined"
-                  elevation={0}
-                  style={{ padding: "15px" }}
-                >
-                  <Typography variant="h5">Instructor</Typography>
-                  <Typography variant="h3">
-                    {course.instructor.prefix + course.instructor.name}
-                  </Typography>
-                  <Typography variant="h4">
-                    {course.instructor.qualifications}
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item md={3}>
-                <Paper
-                  variant="outlined"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "15px",
-                  }}
-                >
-                  <Button
-                    variant="contained"
-                    color="primary"
+  return (
+    <div>
+      <div style={{ width: "100vw", marginTop: "80px" }}>
+        <Fade in>
+          <Container>
+            <Container className={classes.root}>
+              <Typography variant="h3">{course.courseName}</Typography>
+            </Container>
+
+            <Container className={classes.root1}>
+              <Grid container spacing={7} className={classes.grids}>
+                <Grid item md={3}>
+                  <Paper
+                    variant="outlined"
+                    elevation={0}
+                    style={{ padding: "15px" }}
+                  >
+                    <Typography variant="h2">{course.courseCode}</Typography>
+                    <Typography variant="h4">{course.courseName}</Typography>
+                    <Typography variant="p">{course.info}</Typography>
+                  </Paper>
+                </Grid>
+                <Grid item md={5}>
+                  <Paper
+                    variant="outlined"
+                    elevation={0}
+                    style={{ padding: "15px" }}
+                  >
+                    <Typography variant="h5">Instructor</Typography>
+                    <Typography variant="h3">
+                      {course.instructor.prefix + course.instructor.name}
+                    </Typography>
+                    <Typography variant="h4">
+                      {course.instructor.qualifications}
+                    </Typography>
+                  </Paper>
+                </Grid>
+                <Grid item md={3}>
+                  <Paper
+                    variant="outlined"
                     style={{
-                      marginBottom: "20px",
-                      background:
-                        "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "15px",
                     }}
                   >
-                    Enroll Now
-                  </Button>
-                  <TextField
-                    variant="filled"
-                    label="Password"
-                    type="password"
-                  />
-                </Paper>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{
+                        marginBottom: "20px",
+                        background:
+                          "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
+                      }}
+                    >
+                      Enroll Now
+                    </Button>
+                    <TextField
+                      variant="filled"
+                      label="Password"
+                      type="password"
+                    />
+                  </Paper>
+                </Grid>
               </Grid>
-            </Grid>
+            </Container>
+            <Container
+              style={{
+                background: "gray",
+                marginTop: "100px",
+                borderRadius: "5px 5px 0 0",
+              }}
+            >
+              <MyTabs value={selectedTab} onChange={handleChange}>
+                <MyTab label="Learning Outcomes" />
+                <MyTab label="Reviews" />
+              </MyTabs>
+            </Container>
+            <Container className={classes.tabPanel}>
+              {selectedTab === 1 && <Reqs />}
+              {selectedTab === 0 && <Outs />}
+            </Container>
           </Container>
-          <Container
-            style={{
-              background: "gray",
-              marginTop: "100px",
-              borderRadius: "5px 5px 0 0",
-            }}
-          >
-            <MyTabs value={selectedTab} onChange={handleChange}>
-              <MyTab label="Learning Outcomes" />
-              <MyTab label="Reviews" />
-            </MyTabs>
-          </Container>
-          <Container className={classes.tabPanel}>
-            {selectedTab === 1 && <Reqs />}
-            {selectedTab === 0 && <Outs />}
-            {/* <Reqs />
-        <Outs /> */}
-          </Container>
-        </Container>
-      </Fade>
+        </Fade>
+      </div>
     </div>
   );
 };

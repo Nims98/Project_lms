@@ -3,38 +3,42 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Fade } from "@material-ui/core";
 import HomePage from "./components/LandingPage/HomePage";
 // import SideBar from "./components/SideBar";
-// import EnrollPage from "./components/Dashboard/EnrollPage";
-// import CourseView from "./components/Dashboard/CourseView";
-// import NavBar from "./components/Dashboard/NavBar";
-// import MyCourses from "./components/Dashboard/MyCourses";
+import EnrollPage from "./components/Dashboard/EnrollPage";
+import CourseView from "./components/Dashboard/CourseView";
+import NavBar from "./components/Dashboard/NavBar";
+import MyCourses from "./components/Dashboard/MyCourses";
 // import LoginForm from "./components/LandingPage/LoginForm";
 // import Basic from "./components/test";
 import SignUp from "./components/LandingPage/SignUp";
-import DashBoard from "./components/Dashboard/DashBoard";
-import AddCourse from "./components/AddCourse";
+// import DashBoard from "./components/Dashboard/DashBoard";
+// import AddCourse from "./components/AddCourse";
+import Home from "./components/Dashboard/Home";
 
 const App = () => {
   return (
-    <div>
-      <Router>
+    <Router>
+      {/* <NavBar /> */}
+      <Route path="/dashboard/" component={NavBar} />
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <Fade in>
           <Switch>
-            {/* <Route exact path="/add-course" component={AddCourse} /> */}
-            {/* <AddCourse /> */}
-            {/* <Basic /> */}
-            {/* <LoginForm /> */}
-            <Route path="/dashboard/" component={DashBoard} />
-            {/* <EnrollPage /> */}
+            <Route exact path="/dashboard/all-courses" component={Home} />
+            <Route exact path="/dashboard/my-courses" component={MyCourses} />
+            <Route
+              path="/dashboard/all-courses/enroll-course"
+              component={EnrollPage}
+            />
+            <Route
+              path="/dashboard/my-courses/course-view"
+              component={CourseView}
+            />
             <Route exact path="/" component={HomePage} />
             <Route exact path="/sign-up" component={SignUp} />
-
-            {/* <NavBar /> */}
-            {/* <MyCourses /> */}
-            {/* <SignUp /> */}
+            {/* <AddCourse /> */}
           </Switch>
         </Fade>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 };
 

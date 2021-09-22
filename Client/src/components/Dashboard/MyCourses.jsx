@@ -26,101 +26,86 @@ const useStyles = makeStyles({
     overflowY: "scroll",
   },
 });
+
 const Courses = () => {
-  const dispatch = useDispatch();
+  const classes = useStyles();
 
   const { payload } = useSelector(coursesReceived);
   const myCourses = payload.courses.list;
-  console.log(myCourses);
 
   const [courses, setCourses] = useState([]);
-
   useEffect(() => {
     setCourses(myCourses);
   }, [myCourses]);
 
   const [Search, setSearch] = useState("");
-  const classes = useStyles();
 
   return !myCourses.length ? (
     <CircularProgress />
   ) : (
-    <Container className={classes.container}>
-      <Fade in>
-        <div style={{ marginTop: "80px", padding: "15px", width: "100vw" }}>
-          <Container
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              margin: "20px 0 20px 15px",
-              padding: 0,
-            }}
-          >
-            <Typography variant="h4">My Courses</Typography>
-            <TextField
-              size="small"
-              style={{ width: "40%" }}
-              color="inherit"
-              variant="outlined"
-              label="Search"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon color="disabled" />
-                  </InputAdornment>
-                ),
+    <div style={{ display: "flex", background: "white" }}>
+      <Container className={classes.container}>
+        <Fade in>
+          <div style={{ marginTop: "80px", padding: "15px", width: "100vw" }}>
+            <Container
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                margin: "20px 0 20px 15px",
+                padding: 0,
               }}
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-          </Container>
-          <Grid container spacing={5} justifyContent="flex-start">
-            {courses
-              .filter((val) => {
-                if (Search === "") return val;
-                else if (
-                  val.courseName.toLowerCase().includes(Search.toLowerCase())
-                )
-                  return val;
-              })
-              .map((course) => {
-                return (
-                  <Grid item sm={6} md={4} lg={3}>
-                    <Link
-                      to="/dashboard/my-courses/course-view"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Course
-                        courseName={course.courseName}
-                        courseCode={course.courseCode}
-                        info={course.info}
-                      />
-                    </Link>
-                  </Grid>
-                );
-              })}
-          </Grid>
-        </div>
-      </Fade>
-    </Container>
-  );
-};
-const MyCourses = () => {
-  const classes = useStyles();
-
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/dashboard/my-courses" component={Courses} />
-        <Route
-          path="/dashboard/my-courses/course-view"
-          component={CourseView}
-        />
-      </Switch>
-    </Router>
+            >
+              <Typography variant="h4">My Courses</Typography>
+              <TextField
+                size="small"
+                style={{ width: "40%" }}
+                color="inherit"
+                variant="outlined"
+                label="Search"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon color="disabled" />
+                    </InputAdornment>
+                  ),
+                }}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+              />
+            </Container>
+            <Grid container spacing={5} justifyContent="flex-start">
+              {courses
+                .filter((val) => {
+                  if (Search === "") return val;
+                  else if (
+                    val.courseName.toLowerCase().includes(Search.toLowerCase())
+                  )
+                    return val;
+                })
+                .map((course) => {
+                  return (
+                    <Grid item sm={6} md={4} lg={3}>
+                      <Link
+                        to="/dashboard/my-courses/course-view"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Course
+                          courseName={course.courseName}
+                          courseCode={course.courseCode}
+                          info={course.info}
+                        />
+                      </Link>
+                    </Grid>
+                  );
+                })}
+            </Grid>
+          </div>
+        </Fade>
+      </Container>
+    </div>
   );
 };
 
-export default MyCourses;
+export default Courses;

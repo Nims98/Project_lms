@@ -10,11 +10,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import "./../../App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavBar from "./NavBar";
 import { Fade } from "@material-ui/core";
 import image from "./../../images/pdf.svg";
-import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
   main: {
@@ -126,48 +123,50 @@ const View = ({ info }) => {
 const CourseView = () => {
   const classes = useStyles();
   return (
-    <div style={{ width: "100vw", marginTop: "80px" }}>
-      <Fade in>
-        <div className="root">
-          <div className={classes.main}>
-            <Grid container spacing={0} direction="row">
-              <View info="Reading Material" />
-              <View info="Lectures" />
-              <View info="Assignments" />
-              <View info="Assignments" />
-            </Grid>
+    <div>
+      <div style={{ width: "100vw", marginTop: "80px" }}>
+        <Fade in>
+          <div className="root">
+            <div className={classes.main}>
+              <Grid container spacing={0} direction="row">
+                <View info="Reading Material" />
+                <View info="Lectures" />
+                <View info="Assignments" />
+                <View info="Assignments" />
+              </Grid>
+            </div>
+            <div className={classes.side}>
+              <Container style={{ background: "teal", width: "80%" }}>
+                <Card className={classes.root}>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      Word of the Day
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                      belent
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      adjective
+                    </Typography>
+                    <Typography variant="body2">
+                      well meaning and kindly.
+                      <br />
+                      {'"a benevolent smile"'}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Container>
+            </div>
           </div>
-          <div className={classes.side}>
-            <Container style={{ background: "teal", width: "80%" }}>
-              <Card className={classes.root}>
-                <CardContent>
-                  <Typography
-                    sx={{ fontSize: 14 }}
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    Word of the Day
-                  </Typography>
-                  <Typography variant="h5" component="div">
-                    belent
-                  </Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    adjective
-                  </Typography>
-                  <Typography variant="body2">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small">Learn More</Button>
-                </CardActions>
-              </Card>
-            </Container>
-          </div>
-        </div>
-      </Fade>
+        </Fade>
+      </div>
     </div>
   );
 };

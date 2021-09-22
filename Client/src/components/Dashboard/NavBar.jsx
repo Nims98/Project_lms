@@ -1,10 +1,9 @@
 import React from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import SchoolIcon from "@material-ui/icons/School";
-import { Tabs, Tab } from "@material-ui/core";
+import { Tabs, Tab, Typography } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import { useState } from "react";
-
 import "./../../App.css";
 
 const MyTabs = withStyles({
@@ -22,6 +21,7 @@ const MyTab = withStyles({
 })((props) => <Tab disableRipple {...props} />);
 
 const useStyles = makeStyles({});
+
 const NavBar = ({ value }) => {
   const classes = useStyles();
 
@@ -34,8 +34,15 @@ const NavBar = ({ value }) => {
     <div>
       <div className="navbar">
         <div className="left">
-          <SchoolIcon fontSize="large" style={{ marginRight: 10 }} />
-          <p>University of Somewhere</p>
+          <SchoolIcon fontSize="large" style={{ marginRight: 9 }} />
+          <Typography
+            variant="h4"
+            component={Link}
+            to="/"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            University of Somewhere
+          </Typography>
         </div>
 
         <div className="right">
