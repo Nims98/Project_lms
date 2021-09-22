@@ -3,6 +3,7 @@ import "./../../App.css";
 import { Typography } from "@material-ui/core";
 import { Fade } from "@material-ui/core";
 import LoginForm from "./LoginForm";
+import SignUp from "./SignUp";
 import { Container } from "@material-ui/core";
 const HomePage = () => {
   return (
@@ -17,9 +18,9 @@ const HomePage = () => {
         </div>
         <div className="right">
           <div className="top"></div>
-          <div className="bottom">
-            <LoginForm />
-          </div>
+          <SignUp />
+          {/* <LoginForm /> */}
+          <div className="bottom"></div>
         </div>
       </div>
     </Fade>

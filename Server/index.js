@@ -13,8 +13,6 @@ app.use(express.json({ limit: "30mb", extended: "true" }));
 app.use(express.urlencoded({ limit: "30mb", extended: "true" }));
 app.use("/all-courses", coursesRoutes);
 
-// const CONNETION_URL =
-//     "mongodb+srv://Nirmala:nirmala1234@cluster0.h6ako.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT;
 
 mongoose

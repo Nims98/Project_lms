@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Avatar from "@material-ui/core/Avatar";
 import Fade from "@material-ui/core/Fade";
+import Grow from "@material-ui/core/Grow";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -15,15 +16,19 @@ import { TextField } from "formik-material-ui";
 const theme = createTheme();
 
 const SignUp = () => {
+  const [isSignUp, setisSignUp] = React.useState(false);
+  const switchMode = () => {
+    setisSignUp((prevIsSignUp) => !prevIsSignUp);
+  };
+
+  // const isSignUp = false;
+
   return (
     <Fade in>
       <div
         style={{
+          margin: "0 100px 0 100px",
           display: "flex",
-          background: "",
-          height: "100vh",
-          width: "100vw",
-          alignItems: "center",
         }}
       >
         <Formik
@@ -83,148 +88,169 @@ const SignUp = () => {
                   background: "#EBEBEB",
                   borderRadius: "10px",
                   padding: "20px",
-                  width: "700px",
+                  // width: "700px",
                 }}
               >
                 <CssBaseline />
-                <Form>
-                  <Box
-                    sx={{
-                      marginTop: 8,
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
+                <Grow in>
+                  <Form>
                     <Box
                       sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        width: "100%",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Typography component="h1" variant="h4">
-                        Sign Up
-                      </Typography>
-                      <Avatar fontSize="large" />
-                    </Box>
-                    <Box
-                      sx={{
-                        mt: 1,
+                        marginTop: 8,
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "center",
-                        width: "100%",
+                        alignItems: "center",
                       }}
                     >
                       <Box
                         sx={{
-                          // width: "100%",
                           display: "flex",
-                          // justifyContent: "center",
                           flexDirection: "row",
+                          alignItems: "center",
+                          width: "100%",
+                          justifyContent: "space-between",
                         }}
                       >
-                        <Field
-                          component={TextField}
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="firstName"
-                          label="First Name"
-                          name="firstName"
-                        />
-                        <Field
-                          component={TextField}
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="lastName"
-                          label="Last Name"
-                          name="lastName"
-                        />
+                        <Typography component="h1" variant="h4">
+                          {isSignUp ? "Sign Up" : "Log In"}
+                        </Typography>
+                        <Avatar fontSize="large" />
                       </Box>
-                      <Field
-                        component={TextField}
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                      />
                       <Box
                         sx={{
-                          // width: "100%",
+                          mt: 1,
                           display: "flex",
-                          // justifyContent: "center",
-                          flexDirection: "row",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          width: "100%",
                         }}
                       >
-                        <Field
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                          id="address"
-                          label="Address"
-                          name="address"
-                        />
-                        <Field
-                          component={TextField}
-                          margin="normal"
-                          fullWidth
-                          id="phone"
-                          label="Phone Number"
-                          name="phone"
-                        />
-                      </Box>
-                      <Field
-                        component={TextField}
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                      />
-                      <Field
-                        component={TextField}
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="confirmPassword"
-                        label="Confirm Password"
-                        type="Password"
-                        id="confirmPassword"
-                      />
+                        {isSignUp && (
+                          <Box
+                            sx={{
+                              // width: "100%",
+                              display: "flex",
+                              // justifyContent: "center",
+                              flexDirection: "row",
+                            }}
+                          >
+                            <Field
+                              component={TextField}
+                              margin="normal"
+                              required
+                              fullWidth
+                              id="firstName"
+                              label="First Name"
+                              name="firstName"
+                            />
+                            <Field
+                              component={TextField}
+                              margin="normal"
+                              required
+                              fullWidth
+                              id="lastName"
+                              label="Last Name"
+                              name="lastName"
+                            />
+                          </Box>
+                        )}
 
-                      <Button
-                        style={{
-                          background: "#00498B",
-                          color: "white",
-                          margin: "20px 0 10px 0",
-                        }}
-                        onClick={submitForm}
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                      >
-                        Sign Up
-                      </Button>
-                      <Grid container>
-                        <Grid item>
-                          <Link href="#" variant="body2">
-                            {"Go to Log In Page"}
-                          </Link>
+                        <Field
+                          component={TextField}
+                          margin="normal"
+                          required
+                          fullWidth
+                          id="email"
+                          label="Email Address"
+                          name="email"
+                        />
+                        {isSignUp && (
+                          <Box
+                            sx={{
+                              // width: "100%",
+                              display: "flex",
+                              // justifyContent: "center",
+                              flexDirection: "row",
+                            }}
+                          >
+                            <Field
+                              component={TextField}
+                              margin="normal"
+                              fullWidth
+                              id="address"
+                              label="Address"
+                              name="address"
+                            />
+                            <Field
+                              component={TextField}
+                              margin="normal"
+                              fullWidth
+                              id="phone"
+                              label="Phone Number"
+                              name="phone"
+                            />
+                          </Box>
+                        )}
+
+                        <Field
+                          component={TextField}
+                          margin="normal"
+                          required
+                          fullWidth
+                          name="password"
+                          label="Password"
+                          type="password"
+                          id="password"
+                          autoComplete="current-password"
+                        />
+                        {isSignUp && (
+                          <Field
+                            component={TextField}
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="confirmPassword"
+                            label="Confirm Password"
+                            type="Password"
+                            id="confirmPassword"
+                          />
+                        )}
+
+                        <Button
+                          style={{
+                            background: "#00498B",
+                            color: "white",
+                            margin: "20px 0 10px 0",
+                          }}
+                          onClick={submitForm}
+                          fullWidth
+                          variant="contained"
+                          sx={{ mt: 3, mb: 2 }}
+                        >
+                          {isSignUp ? "Sign Up" : "Log In"}
+                        </Button>
+                        <Grid container>
+                          <Grid item>
+                            <Button
+                              style={{
+                                // background: "#00498B",
+                                color: "black",
+                                margin: "20px 0 10px 0",
+                              }}
+                              variant="text"
+                              sx={{ mt: 3, mb: 2 }}
+                              onClick={switchMode}
+                            >
+                              {isSignUp
+                                ? "Already have an account ?"
+                                : "Don't have an account ?"}
+                            </Button>
+                          </Grid>
                         </Grid>
-                      </Grid>
+                      </Box>
                     </Box>
-                  </Box>
-                </Form>
+                  </Form>
+                </Grow>
               </Container>
             </ThemeProvider>
           )}
