@@ -29,6 +29,7 @@ export const signUp = async(req, res) => {
             address,
             phone,
         });
+
         const token = jwt.sign({ email: result.email, id: result._id }, "SECRET_KEY", { expiresIn: "1h" });
         res.status(200).json({ result, token });
     } catch (error) {

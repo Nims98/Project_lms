@@ -22,25 +22,20 @@ body {
 
 .root .left {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50%;
-    height: 100vh;
+    height: 100%;
     background: rgb(235, 235, 235);
 }
 
 .root .right {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     height: 100vh;
     width: 50%;
     background: rgb(0, 73, 139);
-}
-
-.root .right .top {
-    height: 50%;
-}
-
-.root .right .bottom {
-    height: 50%;
 }
 
 .root .main {

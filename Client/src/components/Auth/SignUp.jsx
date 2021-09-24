@@ -13,17 +13,21 @@ import { Form, Formik, Field } from "formik";
 import { TextField } from "formik-material-ui";
 import Icon from "./Icon";
 import { GoogleLogin } from "react-google-login";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./../../store/auth.js";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { addUser } from "../../store/users.js";
+import { loginUser } from "../../store/users.js";
+// import { userAdded } from "../../store/users.js";
 const theme = createTheme();
 
 const SignUp = () => {
   const [isSignUp, setisSignUp] = React.useState(false);
 
   const [formData, setFormData] = useState({});
-
+  // const { payload } = useSelector(userAdded);
+  // const res = payload;
   const switchMode = () => {
     setisSignUp((prevIsSignUp) => !prevIsSignUp);
   };
@@ -66,11 +70,29 @@ const SignUp = () => {
           }}
           validate={(values) => {
             const errors = {};
-            if (!values.firstName) {
-              errors.firstName = "Required";
-            }
-            if (!values.lastName) {
-              errors.lastName = "Required";
+            if (isSignUp) {
+              if (!values.firstName) {
+                errors.firstName = "Required";
+              }
+              if (!values.lastName) {
+                errors.lastName = "Required";
+              }
+              if (!values.confirmPassword) {
+                errors.confirmPassword = "Required";
+              } else if (values.password !== values.confirmPassword) {
+                errors.confirmPassword = "Passwords do not match";
+              }
+              if (!/^[0-9\b]+$/i.test(values.phone) || values.phone.length !== 10) {
+                errors.phone = "Enter a Valid Phone Number";
+              }
+              if (!values.email) {
+                errors.email = "Required";
+              } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = "Invalid email address";
+              }
+              if (!values.password) {
+                errors.password = "Required";
+              }
             }
             if (!values.email) {
               errors.email = "Required";
@@ -80,23 +102,44 @@ const SignUp = () => {
             if (!values.password) {
               errors.password = "Required";
             }
-            if (!values.confirmPassword) {
-              errors.confirmPassword = "Required";
-            } else if (values.password !== values.confirmPassword) {
-              errors.confirmPassword = "Passwords do not match";
-            }
-            if (!/^[0-9\b]+$/i.test(values.phone)) {
-              errors.phone = "Enter a Valid Phone Number";
-            } else if (values.phone.length !== 10) {
-              errors.phone = "Enter a Valid Phone Number";
-            }
+
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               setSubmitting(false);
-              setFormData(values);
-              console.log(formData);
+              // history.push("/dashboard/all-courses");
+
+              // setFormData(values);
+              if (!isSignUp) {
+                dispatch(
+                  loginUser(
+                    {
+                      email: values.email,
+                      password: values.password,
+                    },
+                    history
+                  )
+                );
+              }
+              if (isSignUp) {
+                dispatch(
+                  addUser(
+                    {
+                      firstName: values.firstName,
+                      lastName: values.lastName,
+                      email: values.email,
+                      phone: values.phone,
+                      address: values.address,
+                      password: values.password,
+                    },
+                    history
+                  )
+                );
+              }
+              // history.push("/dashboard/all-courses");
+
+              // console.log(formData);
               alert(JSON.stringify(values, null, 2));
             }, 500);
           }}>

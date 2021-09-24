@@ -28,7 +28,7 @@ const App = () => {
             <Route path="/dashboard/my-courses/course-view" component={CourseView} />
             <Route exact path="/" component={HomePage} />
             <Route exact path="/sign-up" component={SignUp} />
-            <Route exact path="/add-course" component={AddCourse} />
+            <Route exact path="/dashboard/add-course" component={AddCourse} />
             {/* <AddCourse /> */}
           </Switch>
         </Fade>

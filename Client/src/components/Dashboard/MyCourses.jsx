@@ -1,12 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Typography,
-  Fade,
-  Grid,
-  Container,
-  TextField,
-  CircularProgress,
-} from "@material-ui/core";
+import { Typography, Fade, Grid, Container, TextField, CircularProgress } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Course from "./Course";
 import { useState } from "react";
@@ -41,7 +34,18 @@ const Courses = () => {
   const [Search, setSearch] = useState("");
 
   return !myCourses.length ? (
-    <CircularProgress />
+    <div
+      style={{
+        padding: "15px",
+        width: "100vw",
+        height: "80vh",
+        marginTop: "80px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+      <CircularProgress size={80} />
+    </div>
   ) : (
     <div style={{ display: "flex", background: "white" }}>
       <Container className={classes.container}>
@@ -54,8 +58,7 @@ const Courses = () => {
                 justifyContent: "space-between",
                 margin: "20px 0 20px 15px",
                 padding: 0,
-              }}
-            >
+              }}>
               <Typography variant="h4">My Courses</Typography>
               <TextField
                 size="small"
@@ -79,23 +82,13 @@ const Courses = () => {
               {courses
                 .filter((val) => {
                   if (Search === "") return val;
-                  else if (
-                    val.courseName.toLowerCase().includes(Search.toLowerCase())
-                  )
-                    return val;
+                  else if (val.courseName.toLowerCase().includes(Search.toLowerCase())) return val;
                 })
                 .map((course) => {
                   return (
                     <Grid item sm={6} md={4} lg={3}>
-                      <Link
-                        to="/dashboard/my-courses/course-view"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <Course
-                          courseName={course.courseName}
-                          courseCode={course.courseCode}
-                          info={course.info}
-                        />
+                      <Link to="/dashboard/my-courses/course-view" style={{ textDecoration: "none" }}>
+                        <Course courseName={course.courseName} courseCode={course.courseCode} info={course.info} />
                       </Link>
                     </Grid>
                   );

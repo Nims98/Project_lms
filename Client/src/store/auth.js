@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { apiCallBegan } from "../middleware/api";
 
 const authSlice = createSlice({
   name: "auth",
@@ -19,3 +20,7 @@ const authSlice = createSlice({
 export const { auth, logout } = authSlice.actions;
 
 export default authSlice.reducer;
+
+// Action Creators
+
+// const url = "/users/signup";

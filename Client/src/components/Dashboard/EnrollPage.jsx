@@ -53,20 +53,21 @@ const useStyles = makeStyles({
 const Reqs = () => {
   return (
     <div>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
-      <Typography variant="h6">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
+      <Typography variant="body1">Review</Typography>
     </div>
   );
 };
@@ -74,21 +75,20 @@ const Reqs = () => {
 const Outs = () => {
   return (
     <div>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
-      <Typography variant="h6">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">Outcome</Typography>
     </div>
   );
 };
@@ -129,39 +129,39 @@ const EnrollPage = () => {
             <Container className={classes.root1}>
               <Grid container spacing={7} className={classes.grids}>
                 <Grid item md={3}>
-                  <Paper variant="elevation" elevation={4} style={{ padding: "15px" }}>
+                  <Paper variant="elevation" elevation={1} style={{ padding: "15px" }}>
                     <Typography variant="h4">{course.courseCode}</Typography>
                     <Typography variant="h5">{course.courseName}</Typography>
                     <Typography variant="body2">{course.info}</Typography>
                   </Paper>
                 </Grid>
                 <Grid item md={5}>
-                  <Paper variant="elevation" elevation={4} style={{ padding: "15px" }}>
+                  <Paper variant="elevation" elevation={1} style={{ padding: "15px" }}>
                     <Typography variant="h5">Instructor</Typography>
                     <Typography variant="h4">{course.instructor.prefix + course.instructor.name}</Typography>
                     <Typography variant="h5">{course.instructor.qualifications}</Typography>
                   </Paper>
                 </Grid>
                 <Grid item md={3}>
-                  <Paper
+                  {/* <Paper
                     variant="elevation"
-                    elevation={4}
+                    elevation={1}
                     style={{
                       display: "flex",
                       flexDirection: "column",
                       padding: "15px",
+                    }}> */}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    style={{
+                      // marginBottom: "20px",
+                      background: "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
                     }}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      style={{
-                        marginBottom: "20px",
-                        background: "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
-                      }}>
-                      Enroll Now
-                    </Button>
-                    <TextField variant="filled" label="Password" type="password" />
-                  </Paper>
+                    Enroll Now
+                  </Button>
+                  {/* <TextField variant="filled" label="Password" type="password" /> */}
+                  {/* </Paper> */}
                 </Grid>
               </Grid>
             </Container>
@@ -173,7 +173,7 @@ const EnrollPage = () => {
                 color: "white",
               }}>
               <MyTabs value={selectedTab} onChange={handleChange}>
-                <MyTab label="Learning Outcomes" />
+                <MyTab label="Description" />
                 <MyTab label="Reviews" />
               </MyTabs>
             </Container>
