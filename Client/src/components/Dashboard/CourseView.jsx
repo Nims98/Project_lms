@@ -2,21 +2,27 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { Container } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import { Typography, TextField } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import Grow from "@material-ui/core/Grow";
+import { Send } from "@material-ui/icons";
+
 import "./../../App.css";
 import { Fade } from "@material-ui/core";
+import { Form, Formik, Field } from "formik";
+
 import image from "./../../images/pdf.svg";
 
 const useStyles = makeStyles({
   main: {
+    // "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
     display: "flex",
-    background: "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
     width: "75%",
     height: "100vh",
     // justifyContent: "left",
@@ -26,7 +32,8 @@ const useStyles = makeStyles({
   side: {
     display: "flex",
     width: "25%",
-    height: "100vh",
+    alignItems: "center",
+    height: "60vh",
   },
   header: {
     width: "100%",
@@ -54,27 +61,22 @@ const Item = () => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={image}
-          title="Lecture Note"
-        />
+        <CardMedia className={classes.media} image={image} title="Lecture Note" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Lecture
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas,
-            modi fugiat perferendis explicabo blanditiis, facilis suscipit
-            laudantium
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, modi fugiat perferendis explicabo
+            blanditiis, facilis suscipit laudantium
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant="contained" size="small" color="primary">
+        <Button variant="contained" size="small" style={{ background: "#00498B", color: "white" }}>
           Download
         </Button>
-        <Button variant="contained" size="small" color="secondary">
+        <Button variant="contained" size="small" style={{ background: "whitesmoke" }}>
           Open
         </Button>
       </CardActions>
@@ -86,11 +88,7 @@ const View = ({ info }) => {
   return (
     <Grid item container md={12} xl={12} lg={12}>
       <Container>
-        <Typography
-          variant="h5"
-          component="h5"
-          style={{ fontWeight: "500", marginTop: "15px", color: "whitesmoke" }}
-        >
+        <Typography variant="h5" component="h5" style={{ fontWeight: "500", marginTop: "15px", color: "black" }}>
           {info}
         </Typography>
       </Container>
@@ -105,8 +103,7 @@ const View = ({ info }) => {
           overflowX: "scroll",
           display: "flex",
           flexDirection: "row",
-        }}
-      >
+        }}>
         <Item />
         <Item />
         <Item />
@@ -124,7 +121,7 @@ const CourseView = () => {
   const classes = useStyles();
   return (
     <div>
-      <div style={{ width: "100vw", marginTop: "80px" }}>
+      <div style={{ width: "100vw", marginTop: "80px", background: "rgba(0,0,0,0.08)" }}>
         <Fade in>
           <div className="root">
             <div className={classes.main}>
@@ -136,32 +133,56 @@ const CourseView = () => {
               </Grid>
             </div>
             <div className={classes.side}>
-              <Container style={{ background: "teal", width: "80%" }}>
-                <Card className={classes.root}>
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 14 }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      Word of the Day
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                      belent
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                      adjective
-                    </Typography>
-                    <Typography variant="body2">
-                      well meaning and kindly.
-                      <br />
-                      {'"a benevolent smile"'}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Learn More</Button>
-                  </CardActions>
-                </Card>
+              <Container style={{ width: "80%" }}>
+                <Formik
+                  initialValues={{
+                    feedBack: "",
+                  }}
+                  onSubmit={(values, { setSubmitting }) => {
+                    setTimeout(() => {
+                      setSubmitting(false);
+
+                      alert(JSON.stringify(values, null, 2));
+                    }, 500);
+                  }}>
+                  {({ submitForm }) => (
+                    <Container
+                      component="main"
+                      minWidth="xs"
+                      maxWidth="md"
+                      style={{
+                        background: "#EBEBEB",
+                        borderRadius: "7px",
+                        padding: "20px",
+                      }}>
+                      <Grow in>
+                        <Form>
+                          <Typography component="h1" variant="h4">
+                            Feedback
+                          </Typography>
+                          <Field
+                            component={TextField}
+                            margin="normal"
+                            fullWidth
+                            multiline
+                            variant="outlined"
+                            rows={10}
+                            id="feedBack"
+                            label="Write a feedback..."
+                            name="feedBack"
+                          />
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            endIcon={<Send />}
+                            style={{ background: "#00498B" }}>
+                            Send
+                          </Button>
+                        </Form>
+                      </Grow>
+                    </Container>
+                  )}
+                </Formik>
               </Container>
             </div>
           </div>

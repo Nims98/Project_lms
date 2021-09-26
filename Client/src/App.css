@@ -5,14 +5,13 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    width: 10px;
-    /* background: rgb(0, 73, 139); */
+    width: 5px;
     background: rgb(235, 235, 235);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .root {
@@ -27,6 +26,7 @@ body {
     width: 50%;
     height: 100%;
     background: rgb(235, 235, 235);
+    text-decoration: none;
 }
 
 .root .right {
@@ -68,7 +68,7 @@ body {
     height: 80px;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to right, rgb(0, 44, 76), rgb(0, 73, 139));
+    background: linear-gradient(to bottom, rgb(0, 56, 95), rgb(0, 73, 139));
     z-index: 2;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
     position: fixed;
@@ -88,7 +88,6 @@ body {
 .navbar .middle {
     flex: 50%;
     display: flex;
-    /* background: black; */
     justify-content: center;
     position: absolute;
     top: 32px;
@@ -100,13 +99,11 @@ body {
 .navbar .right {
     flex: 25%;
     display: flex;
-    /* background: black; */
     justify-content: flex-end;
     align-items: center;
     width: 25%;
     height: 80px;
     position: absolute;
-    /* top: 32px; */
     left: 75%;
     font-family: Arial, Helvetica, sans-serif;
     color: azure;

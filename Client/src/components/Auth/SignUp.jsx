@@ -17,8 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./../../store/auth.js";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { addUser } from "../../store/users.js";
-import { loginUser } from "../../store/users.js";
+import { addUser } from "../../store/auth.js";
+import { loginUser } from "../../store/auth.js";
 // import { userAdded } from "../../store/users.js";
 const theme = createTheme();
 
@@ -46,7 +46,6 @@ const SignUp = () => {
       console.log(error);
     }
   };
-  // console.log(JSON.parse(localStorage.getItem("profile")));
   const googleFailure = () => {
     console.log("Google sign in was unsuccessful.Try again later");
   };
@@ -82,8 +81,10 @@ const SignUp = () => {
               } else if (values.password !== values.confirmPassword) {
                 errors.confirmPassword = "Passwords do not match";
               }
-              if (!/^[0-9\b]+$/i.test(values.phone) || values.phone.length !== 10) {
-                errors.phone = "Enter a Valid Phone Number";
+              if (values.phone !== 0) {
+                if (!/^[0-9\b]+$/i.test(values.phone) || values.phone.length !== 10) {
+                  errors.phone = "Enter a Valid Phone Number";
+                }
               }
               if (!values.email) {
                 errors.email = "Required";
@@ -108,9 +109,7 @@ const SignUp = () => {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               setSubmitting(false);
-              // history.push("/dashboard/all-courses");
 
-              // setFormData(values);
               if (!isSignUp) {
                 dispatch(
                   loginUser(
@@ -137,9 +136,7 @@ const SignUp = () => {
                   )
                 );
               }
-              // history.push("/dashboard/all-courses");
 
-              // console.log(formData);
               alert(JSON.stringify(values, null, 2));
             }, 500);
           }}>
@@ -195,33 +192,33 @@ const SignUp = () => {
                               flexDirection: "row",
                             }}>
                             <Field
+                              label="First Name"
                               component={TextField}
                               margin="normal"
                               required
                               fullWidth
                               id="firstName"
-                              label="First Name"
                               name="firstName"
                             />
                             <Field
+                              label="Last Name"
                               component={TextField}
                               margin="normal"
                               required
                               fullWidth
                               id="lastName"
-                              label="Last Name"
                               name="lastName"
                             />
                           </Box>
                         )}
 
                         <Field
+                          label="Email Address"
                           component={TextField}
                           margin="normal"
                           required
                           fullWidth
                           id="email"
-                          label="Email Address"
                           name="email"
                         />
                         {isSignUp && (
@@ -233,43 +230,43 @@ const SignUp = () => {
                               flexDirection: "row",
                             }}>
                             <Field
+                              label="Address"
                               component={TextField}
                               margin="normal"
                               fullWidth
                               id="address"
-                              label="Address"
                               name="address"
                             />
                             <Field
+                              label="Phone Number"
                               component={TextField}
                               margin="normal"
                               fullWidth
                               id="phone"
-                              label="Phone Number"
                               name="phone"
                             />
                           </Box>
                         )}
 
                         <Field
+                          label="Password"
                           component={TextField}
                           margin="normal"
                           required
                           fullWidth
                           name="password"
-                          label="Password"
                           type="password"
                           id="password"
                           autoComplete="current-password"
                         />
                         {isSignUp && (
                           <Field
+                            label="Confirm Password"
                             component={TextField}
                             margin="normal"
                             required
                             fullWidth
                             name="confirmPassword"
-                            label="Confirm Password"
                             type="Password"
                             id="confirmPassword"
                           />
@@ -296,13 +293,13 @@ const SignUp = () => {
                                 fontWeight: "700",
                                 background: "white",
                                 color: "black",
-                                padding: "5px 0 0 0",
+                                // padding: "5px 0 0 0",
                                 height: "40px",
                               }}
                               onClick={renderProps.onClick}
                               disabled={renderProps.disabled}
                               fullWidth
-                              startIcon={<Icon style={{ marginTop: "40px" }} />}
+                              startIcon={<Icon />}
                               variant="contained"
                               sx={{ mt: 3, mb: 2 }}>
                               Continue with Google

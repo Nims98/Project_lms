@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, Switch, useHistory } from "react-router-dom";
+import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import SchoolIcon from "@material-ui/icons/School";
 import { Tabs, Tab, Typography } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import "./../../App.css";
 import { apiCallBegan } from "./../../middleware/api";
 import { Avatar } from "@material-ui/core";
+
 import { Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { logout } from "./../../store/auth.js";
@@ -30,11 +31,18 @@ const useStyles = makeStyles({});
 const NavBar = ({ value }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   const classes = useStyles();
 
   const [selectedTab, setselectedTab] = useState(value);
 
   const [user, setuser] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  useEffect(() => {
+    setuser(JSON.parse(localStorage.getItem("profile")));
+
+    // window.location.reload();
+  }, [location]);
 
   const logout = () => {
     localStorage.clear();
@@ -84,6 +92,7 @@ const NavBar = ({ value }) => {
             <Button
               style={{ margin: "25px 25px 25px 40px", fontWeight: "600", background: "whitesmoke" }}
               variant="contained"
+              size="small"
               onClick={logout}>
               Log Out
             </Button>

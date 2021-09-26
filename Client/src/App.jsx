@@ -13,6 +13,7 @@ import SignUp from "./components/Auth/SignUp";
 // import DashBoard from "./components/Dashboard/DashBoard";
 import AddCourse from "./components/AddCourse";
 import Home from "./components/Dashboard/Home";
+import Profile from "./components/Dashboard/Profile";
 
 const App = () => {
   return (
@@ -24,12 +25,12 @@ const App = () => {
           <Switch>
             <Route exact path="/dashboard/all-courses" component={Home} />
             <Route exact path="/dashboard/my-courses" component={MyCourses} />
+            <Route exact path="/dashboard/profile" component={Profile} />
             <Route path="/dashboard/all-courses/enroll-course" component={EnrollPage} />
             <Route path="/dashboard/my-courses/course-view" component={CourseView} />
             <Route exact path="/" component={HomePage} />
             <Route exact path="/sign-up" component={SignUp} />
             <Route exact path="/dashboard/add-course" component={AddCourse} />
-            {/* <AddCourse /> */}
           </Switch>
         </Fade>
       </div>

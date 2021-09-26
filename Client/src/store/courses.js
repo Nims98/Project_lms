@@ -25,12 +25,7 @@ const CourseSilce = createSlice({
         },
     },
 });
-export const {
-    courseAdded,
-    coursesReceived,
-    coursesRequested,
-    coursesRequestedFailed,
-} = CourseSilce.actions;
+export const { courseAdded, coursesReceived, coursesRequested, coursesRequestedFailed } = CourseSilce.actions;
 
 export default CourseSilce.reducer;
 

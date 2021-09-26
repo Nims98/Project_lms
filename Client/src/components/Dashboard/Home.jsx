@@ -43,7 +43,7 @@ const Allcourses = () => {
         justifyContent: "center",
         alignItems: "center",
       }}>
-      <CircularProgress size={80} />
+      <CircularProgress size={50} />
     </div>
   ) : (
     <div style={{ display: "flex", background: "white" }}>

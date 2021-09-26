@@ -8,7 +8,7 @@ import authReducer from "./auth.js";
 export default function() {
     return configureStore({
         reducer: {
-            users: usersReducer,
+            // users: usersReducer,
             courses: coursesReducer,
             auth: authReducer,
         },
