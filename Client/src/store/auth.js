@@ -14,10 +14,14 @@ const authSlice = createSlice({
             localStorage.clear();
             return {...auth, authData: null };
         },
+        userUpdated: (auth, action) => {
+            console.log(action.payload);
+            return action.payload;
+        },
     },
 });
 
-export const { auth, logout } = authSlice.actions;
+export const { auth, logout, userUpdated } = authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -51,5 +55,16 @@ export const loginUser = (user, history) => (dispatch) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+export const updateUser = (user, currentUserId) => (dispatch) => {
+    dispatch(
+        apiCallBegan({
+            url: `users/${currentUserId}`,
+            method: "patch",
+            data: user,
+            Onsuccess: userUpdated.type,
+        })
+    );
 };
 // const url = "/users/signup";

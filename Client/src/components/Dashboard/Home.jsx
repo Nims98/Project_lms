@@ -26,6 +26,7 @@ const Allcourses = () => {
   const allCourses = payload.courses.list;
 
   const [courses, setCourses] = useState([]);
+
   useEffect(() => {
     setCourses(allCourses);
   }, [allCourses]);

@@ -4,7 +4,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Avatar from "@material-ui/core/Avatar";
 import Fade from "@material-ui/core/Fade";
 import Grow from "@material-ui/core/Grow";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -16,19 +15,26 @@ import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import { useState } from "react";
 import FileInputComponent from "react-file-input-previews-base64";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
 import { VisibilityOff, Visibility } from "@material-ui/icons";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../store/auth.js";
+
 const theme = createTheme();
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isChangePassword, setIsChangePassword] = useState(false);
+  const changePassword = () => {
+    setIsChangePassword((previsChangePassword) => !previsChangePassword);
+  };
   const ShowPassword = () => {
     setShowPassword((prevshowPassword) => !prevshowPassword);
   };
 
   const profile = JSON.parse(localStorage.getItem("profile")).result;
-  console.log(profile);
+  const currentUserId = profile._id;
+  // console.log(profile);
   return (
     <Fade in>
       <div
@@ -59,24 +65,22 @@ const Profile = () => {
             if (!values.lastName) {
               errors.lastName = "Required";
             }
-            if (!values.confirmPassword) {
-              errors.confirmPassword = "Required";
-            } else if (values.password !== values.confirmPassword) {
-              errors.confirmPassword = "Passwords do not match";
+            if (!values.email) {
+              errors.email = "Required";
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+              errors.email = "Invalid email address";
             }
             if (values.phone.length !== 0) {
               if (!/^[0-9\b]+$/i.test(values.phone) || values.phone.length !== 10) {
                 errors.phone = "Enter a Valid Phone Number";
               }
             }
-
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-              errors.email = "Invalid email address";
-            }
-            if (!values.password) {
-              errors.password = "Required";
+            if (values.password) {
+              if (!values.confirmPassword) {
+                errors.confirmPassword = "Required";
+              } else if (values.password !== values.confirmPassword) {
+                errors.confirmPassword = "Passwords do not match";
+              }
             }
 
             return errors;
@@ -85,7 +89,38 @@ const Profile = () => {
             setTimeout(() => {
               setSubmitting(false);
 
-              alert(JSON.stringify(values, null, 2));
+              if (isChangePassword) {
+                dispatch(
+                  updateUser(
+                    {
+                      firstName: values.firstName,
+                      lastName: values.lastName,
+                      selectedFile: values.selectedFile,
+                      email: values.email,
+                      phone: values.phone,
+                      address: values.address,
+                      password: values.password,
+                      confirmPassword: values.confirmPassword,
+                    },
+                    currentUserId
+                  )
+                );
+              } else {
+                dispatch(
+                  updateUser(
+                    {
+                      firstName: values.firstName,
+                      lastName: values.lastName,
+                      selectedFile: values.selectedFile,
+                      email: values.email,
+                      phone: values.phone,
+                      address: values.address,
+                    },
+                    currentUserId
+                  )
+                );
+              }
+              alert("Profile has been updated.Changes will be applied next time you logged in");
             }, 500);
           }}>
           {({ submitForm, setFieldValue }) => (
@@ -229,51 +264,66 @@ const Profile = () => {
                             flexDirection: "column",
                             width: "300px",
                           }}>
-                          <Typography>Change Password</Typography>
-                          <Field
-                            component={TextField}
-                            // margin="normal"
-                            required
-                            // fullWidth
-                            name="password"
-                            label="Create new password"
-                            type={showPassword ? "text" : "password"}
-                            InputProps={{
-                              endAdornment: (
-                                <InputAdornment position="start">
-                                  {showPassword ? (
-                                    <VisibilityOff fontSize="small" onClick={ShowPassword} />
-                                  ) : (
-                                    <Visibility fontSize="small" onClick={ShowPassword} />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                            id="password"
-                            autoComplete="current-password"
-                          />
-                          <Field
-                            component={TextField}
-                            // margin="normal"
-                            required
-                            // fullWidth
-                            name="confirmPassword"
-                            label="Confirm Password"
-                            type={showPassword ? "text" : "password"}
-                            InputProps={{
-                              endAdornment: (
-                                <InputAdornment position="start">
-                                  {showPassword ? (
-                                    <VisibilityOff fontSize="small" onClick={ShowPassword} />
-                                  ) : (
-                                    <Visibility fontSize="small" onClick={ShowPassword} />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                            id="confirmPassword"
-                          />
+                          <Button
+                            size="small"
+                            variant="contained"
+                            style={{ marginTop: "7px" }}
+                            onClick={changePassword}>
+                            Change Password
+                          </Button>
                         </Box>
+                        {isChangePassword && (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              width: "300px",
+                            }}>
+                            <Field
+                              component={TextField}
+                              margin="normal"
+                              required
+                              // fullWidth
+                              name="password"
+                              label="Create new password"
+                              type={showPassword ? "text" : "password"}
+                              InputProps={{
+                                endAdornment: (
+                                  <InputAdornment position="start">
+                                    {showPassword ? (
+                                      <VisibilityOff fontSize="small" onClick={ShowPassword} />
+                                    ) : (
+                                      <Visibility fontSize="small" onClick={ShowPassword} />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                              id="password"
+                              autoComplete="current-password"
+                            />
+                            <Field
+                              component={TextField}
+                              // margin="normal"
+                              required
+                              // fullWidth
+                              name="confirmPassword"
+                              label="Confirm Password"
+                              type={showPassword ? "text" : "password"}
+                              InputProps={{
+                                endAdornment: (
+                                  <InputAdornment position="start">
+                                    {showPassword ? (
+                                      <VisibilityOff fontSize="small" onClick={ShowPassword} />
+                                    ) : (
+                                      <Visibility fontSize="small" onClick={ShowPassword} />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                              id="confirmPassword"
+                            />
+                          </Box>
+                        )}
 
                         <Button
                           style={{

@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+import mongoose from "mongoose";
 import User from "../models/user.js";
 
 export const logIn = async(req, res) => {
@@ -37,4 +37,26 @@ export const signUp = async(req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" });
     }
+};
+
+export const updateUser = async(req, res) => {
+    const { id: _id } = req.params;
+    const { firstName, lastName, email, password, address, phone, selectedFile } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("User not found");
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const updatedUser = await User.findByIdAndUpdate(
+        _id, {
+            email,
+            password: hashedPassword,
+            firstName,
+            lastName,
+            name: `${firstName} ${lastName}`,
+            address,
+            phone,
+            selectedFile,
+        }, { new: true }
+    );
+    res.json(updatedUser);
 };
