@@ -12,7 +12,7 @@ const api =
         if (action.type !== actions.apiCallBegan.type) {
             return next(action);
         }
-        const { url, method, data, Onstart, Onsuccess, OnError } = action.payload;
+        const { url, method, data, Onstart, Onsuccess, headers, OnError } = action.payload;
         if (Onstart) dispatch({ type: Onstart });
         next(action);
         try {
@@ -20,9 +20,10 @@ const api =
                 baseURL: "http://localhost:5000/",
                 url,
                 method,
+                headers,
                 data,
             });
-            console.log(response.headers);
+            // console.log(response.headers);
             //General
             dispatch(actions.apiCallSuccess(response.data));
             //Specific

@@ -41,22 +41,36 @@ export const signUp = async(req, res) => {
 
 export const updateUser = async(req, res) => {
     const { id: _id } = req.params;
-    const { firstName, lastName, email, password, address, phone, selectedFile } = req.body;
+    const { firstName, lastName, email, password, address, phone, imageUrl } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("User not found");
-    const hashedPassword = await bcrypt.hash(password, 12);
-
-    const updatedUser = await User.findByIdAndUpdate(
-        _id, {
-            email,
-            password: hashedPassword,
-            firstName,
-            lastName,
-            name: `${firstName} ${lastName}`,
-            address,
-            phone,
-            selectedFile,
-        }, { new: true }
-    );
-    res.json(updatedUser);
+    if (password) {
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const updatedUser = await User.findByIdAndUpdate(
+            _id, {
+                email,
+                password: hashedPassword,
+                firstName,
+                lastName,
+                name: `${firstName} ${lastName}`,
+                address,
+                phone,
+                imageUrl,
+            }, { new: true }
+        );
+        res.json(updatedUser);
+    } else {
+        const updatedUser = await User.findByIdAndUpdate(
+            _id, {
+                email,
+                firstName,
+                lastName,
+                name: `${firstName} ${lastName}`,
+                address,
+                phone,
+                imageUrl,
+            }, { new: true }
+        );
+        res.json(updatedUser);
+    }
 };

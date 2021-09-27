@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
     name: String,
     firstName: String,
     lastName: String,
-    selectedFile: String,
+    imageUrl: String,
     email: String,
     address: String,
     phone: Number,

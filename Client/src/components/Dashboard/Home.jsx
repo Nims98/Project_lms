@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Fade, Typography, Grid, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Course from "./Course";
-import { Link } from "react-router-dom";
 import { TextField, CircularProgress } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { coursesReceived } from "./../../store/courses.js";
 
 const useStyles = makeStyles({
@@ -21,7 +20,6 @@ const useStyles = makeStyles({
 
 const Allcourses = () => {
   const classes = useStyles();
-
   const { payload } = useSelector(coursesReceived);
   const allCourses = payload.courses.list;
 
@@ -86,10 +84,12 @@ const Allcourses = () => {
                 })
                 .map((course) => {
                   return (
-                    <Grid item sm={6} md={4} lg={3}>
-                      <Link to="/dashboard/all-courses/enroll-course" style={{ textDecoration: "none" }}>
-                        <Course courseName={course.courseName} courseCode={course.courseCode} info={course.info} />
-                      </Link>
+                    <Grid item sm={6} md={4} lg={3} key={course._id}>
+                      {/* <ButtonBase onClick={openCourse(course)}> */}
+                      {/* <Link to="/dashboard/all-courses/enroll-course" style={{ textDecoration: "none" }}> */}
+                      <Course course={course} enrolled={false} />
+                      {/* </Link> */}
+                      {/* </ButtonBase> */}
                     </Grid>
                   );
                 })}

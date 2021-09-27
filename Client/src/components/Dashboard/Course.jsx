@@ -1,32 +1,30 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { CardActionArea } from "@material-ui/core";
-const useStyles = makeStyles({
-  root: {
-    maxwidth: 330,
-    minHeight: 220,
-    borderRadius: 10,
-    margin: 10,
-  },
-});
-const Course = ({ courseName, courseCode, info }) => {
-  const classes = useStyles();
+import { CardActionArea, ButtonBase } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+
+const Course = ({ course, enrolled }) => {
+  const history = useHistory();
+  // const classes = useStyles();
+  const enrollCourse = () => history.push(`/dashboard/all-courses/enroll-course/${course._id}`);
+  const openCourse = () => history.push(`/dashboard/my-courses/course-view/${course._id}`);
 
   return (
-    <Card className={classes.root}>
+    <ButtonBase onClick={!enrolled ? enrollCourse : openCourse}>
       <CardActionArea>
-        <CardContent>
+        <Card style={{ width: 270, height: 220, display: "flex", textAlign: "left" }}>
           <CardContent>
-            <Typography variant="h4">{courseCode}</Typography>
-            <Typography variant="h5">{courseName}</Typography>
-            <Typography variant="p">{info}</Typography>
+            <CardContent>
+              <Typography variant="h4">{course.courseCode}</Typography>
+              <Typography variant="h5">{course.courseName}</Typography>
+              <Typography variant="p">{course.info}</Typography>
+            </CardContent>
           </CardContent>
-        </CardContent>
+        </Card>
       </CardActionArea>
-    </Card>
+    </ButtonBase>
   );
 };
 

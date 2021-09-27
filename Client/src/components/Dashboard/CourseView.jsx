@@ -9,7 +9,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
 import Grow from "@material-ui/core/Grow";
 import { Send } from "@material-ui/icons";
 

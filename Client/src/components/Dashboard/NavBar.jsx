@@ -2,15 +2,14 @@ import React from "react";
 import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import SchoolIcon from "@material-ui/icons/School";
 import { Tabs, Tab, Typography } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 import { useState, useEffect } from "react";
 import "./../../App.css";
-import { apiCallBegan } from "./../../middleware/api";
 import { Avatar } from "@material-ui/core";
 
 import { Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { logout } from "./../../store/auth.js";
+import { loadCourses } from "./../../store/courses.js";
 
 const MyTabs = withStyles({
   indicator: {
@@ -26,22 +25,19 @@ const MyTab = withStyles({
   },
 })((props) => <Tab disableRipple {...props} />);
 
-const useStyles = makeStyles({});
-
 const NavBar = ({ value }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const classes = useStyles();
-
+  setTimeout(() => {
+    dispatch(loadCourses());
+  }, 500);
   const [selectedTab, setselectedTab] = useState(value);
 
   const [user, setuser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   useEffect(() => {
     setuser(JSON.parse(localStorage.getItem("profile")));
-
-    // window.location.reload();
   }, [location]);
 
   const logout = () => {
@@ -85,7 +81,7 @@ const NavBar = ({ value }) => {
         </div>
         {user ? (
           <div className="right">
-            <Avatar style={{ margin: "10px" }} alt={user.result.name} src={user.result.imageUrl}>
+            <Avatar size="large" style={{ margin: "10px" }} alt={user.result.name} src={user.result.imageUrl}>
               {user.result.name.charAt(0)}
             </Avatar>
             <Typography>{user.result.name}</Typography>

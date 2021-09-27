@@ -3,11 +3,9 @@ import { Typography, Fade, Grid, Container, TextField, CircularProgress } from "
 import { makeStyles } from "@material-ui/styles";
 import Course from "./Course";
 import { useState } from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import CourseView from "./CourseView";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { coursesReceived } from "./../../store/courses.js";
 
 const useStyles = makeStyles({
@@ -86,10 +84,10 @@ const Courses = () => {
                 })
                 .map((course) => {
                   return (
-                    <Grid item sm={6} md={4} lg={3}>
-                      <Link to="/dashboard/my-courses/course-view" style={{ textDecoration: "none" }}>
-                        <Course courseName={course.courseName} courseCode={course.courseCode} info={course.info} />
-                      </Link>
+                    <Grid item sm={6} md={4} lg={3} key={course._id}>
+                      {/* <Link to="/dashboard/my-courses/course-view" style={{ textDecoration: "none" }}> */}
+                      <Course course={course} enrolled={true} />
+                      {/* </Link> */}
                     </Grid>
                   );
                 })}

@@ -49,7 +49,7 @@ const Profile = () => {
           initialValues={{
             firstName: profile.firstName,
             lastName: profile.lastName,
-            selectedFile: "",
+            imageUrl: profile.imageUrl,
             email: profile.email,
             phone: profile.phone,
             address: profile.address,
@@ -95,7 +95,7 @@ const Profile = () => {
                     {
                       firstName: values.firstName,
                       lastName: values.lastName,
-                      selectedFile: values.selectedFile,
+                      imageUrl: values.imageUrl,
                       email: values.email,
                       phone: values.phone,
                       address: values.address,
@@ -111,7 +111,7 @@ const Profile = () => {
                     {
                       firstName: values.firstName,
                       lastName: values.lastName,
-                      selectedFile: values.selectedFile,
+                      imageUrl: values.imageUrl,
                       email: values.email,
                       phone: values.phone,
                       address: values.address,
@@ -175,10 +175,10 @@ const Profile = () => {
                           }}>
                           <Box style={{ width: "25%", marginTop: "22px" }}>
                             <Field
-                              id="selectedFile"
-                              name="selectedFile"
+                              id="imageUrl"
+                              name="imageUrl"
                               type="file"
-                              labelText="Add a Profile Photo"
+                              labelText="Change Profile Photo"
                               accept="image/*"
                               buttonComponent={
                                 <Button
@@ -202,7 +202,7 @@ const Profile = () => {
                               }}
                               component={FileInputComponent}
                               multiple={false}
-                              callbackFunction={(file_arr) => setFieldValue("selectedFile", file_arr.base64)}
+                              callbackFunction={(file_arr) => setFieldValue("imageUrl", file_arr.base64)}
                             />
                           </Box>
                           <Box style={{ width: "75%" }}>
@@ -285,7 +285,7 @@ const Profile = () => {
                               required
                               // fullWidth
                               name="password"
-                              label="Create new password"
+                              label="Current or new password"
                               type={showPassword ? "text" : "password"}
                               InputProps={{
                                 endAdornment: (
@@ -321,6 +321,7 @@ const Profile = () => {
                                 ),
                               }}
                               id="confirmPassword"
+                              autoComplete="current-password"
                             />
                           </Box>
                         )}

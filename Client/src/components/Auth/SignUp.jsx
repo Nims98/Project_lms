@@ -11,44 +11,48 @@ import Container from "@material-ui/core/Container";
 import { createTheme, ThemeProvider } from "@material-ui/core/";
 import { Form, Formik, Field } from "formik";
 import { TextField } from "formik-material-ui";
-import Icon from "./Icon";
-import { GoogleLogin } from "react-google-login";
-import { useDispatch, useSelector } from "react-redux";
-import { auth } from "./../../store/auth.js";
+// import { GoogleLogin } from "react-google-login";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { addUser } from "../../store/auth.js";
 import { loginUser } from "../../store/auth.js";
+import { VisibilityOff, Visibility } from "@material-ui/icons";
+import InputAdornment from "@material-ui/core/InputAdornment";
+
 // import { userAdded } from "../../store/users.js";
 const theme = createTheme();
 
 const SignUp = () => {
   const [isSignUp, setisSignUp] = React.useState(false);
 
-  const [formData, setFormData] = useState({});
   // const { payload } = useSelector(userAdded);
   // const res = payload;
   const switchMode = () => {
     setisSignUp((prevIsSignUp) => !prevIsSignUp);
   };
+  const [showPassword, setShowPassword] = useState(false);
 
+  const ShowPassword = () => {
+    setShowPassword((prevshowPassword) => !prevshowPassword);
+  };
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
 
-    try {
-      dispatch(auth({ result, token }));
-      history.push("/dashboard/all-courses");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const googleFailure = () => {
-    console.log("Google sign in was unsuccessful.Try again later");
-  };
+  //   try {
+  //     dispatch(auth({ result, token }));
+  //     history.push("/dashboard/all-courses");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // const googleFailure = () => {
+  //   console.log("Google sign in was unsuccessful.Try again later");
+  // };
 
   return (
     <Fade in>
@@ -255,9 +259,20 @@ const SignUp = () => {
                           required
                           fullWidth
                           name="password"
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           id="password"
                           autoComplete="current-password"
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="start">
+                                {showPassword ? (
+                                  <VisibilityOff fontSize="small" onClick={ShowPassword} />
+                                ) : (
+                                  <Visibility fontSize="small" onClick={ShowPassword} />
+                                )}
+                              </InputAdornment>
+                            ),
+                          }}
                         />
                         {isSignUp && (
                           <Field
@@ -267,8 +282,19 @@ const SignUp = () => {
                             required
                             fullWidth
                             name="confirmPassword"
-                            type="Password"
+                            type={showPassword ? "text" : "password"}
                             id="confirmPassword"
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="start">
+                                  {showPassword ? (
+                                    <VisibilityOff fontSize="small" onClick={ShowPassword} />
+                                  ) : (
+                                    <Visibility fontSize="small" onClick={ShowPassword} />
+                                  )}
+                                </InputAdornment>
+                              ),
+                            }}
                           />
                         )}
 
@@ -285,7 +311,7 @@ const SignUp = () => {
                           sx={{ mt: 3, mb: 2 }}>
                           {isSignUp ? "Sign Up" : "Log In"}
                         </Button>
-                        <GoogleLogin
+                        {/* <GoogleLogin
                           clientId="9006130706-74le5v6qe3g19pmbg4ts5m1ps68pubt3.apps.googleusercontent.com"
                           render={(renderProps) => (
                             <Button
@@ -308,7 +334,7 @@ const SignUp = () => {
                           onSuccess={googleSuccess}
                           onFailure={googleFailure}
                           cookiePolicy="single_host_origin"
-                        />
+                        /> */}
                         <Grid container>
                           <Grid item>
                             <Button

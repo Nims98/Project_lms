@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "../middleware/api";
+import moment from "moment";
 
 const CourseSilce = createSlice({
     name: "courses",
@@ -34,11 +35,16 @@ const url = "/all-courses";
 
 export const loadCourses = () => (dispatch, getState) => {
     const { lastFetch } = getState().courses;
-    console.log(lastFetch);
+    const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
+    if (diffInMinutes < 10) return;
+    if (!localStorage.getItem("profile")) return;
     dispatch(
         apiCallBegan({
             url,
             Onstart: coursesRequested.type,
+            headers: {
+                authorization: `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`,
+            },
             Onsuccess: coursesReceived.type,
             OnError: coursesRequestedFailed.type,
         })

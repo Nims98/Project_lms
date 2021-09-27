@@ -3,8 +3,10 @@ import { Button, Paper } from "@material-ui/core";
 import { Container, Grid, Fade } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core/";
-import { TextField } from "@material-ui/core/";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { coursesReceived } from "./../../store/courses.js";
+import { useSelector } from "react-redux";
 
 const MyTabs = withStyles({
   indicator: {
@@ -47,6 +49,7 @@ const useStyles = makeStyles({
     overflowY: "scroll",
     height: "300px",
     background: "#C3CCCC",
+    paddingTop: "10px",
   },
 });
 
@@ -72,39 +75,31 @@ const Reqs = () => {
   );
 };
 
-const Outs = () => {
+const Outs = ({ info }) => {
   return (
     <div>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
-      <Typography variant="body1">Outcome</Typography>
+      <Typography variant="body1">{info}</Typography>
     </div>
   );
 };
 
 const EnrollPage = () => {
-  const [course, setCourse] = useState({
-    courseName: "Web Application Development",
-    courseCode: "EE5201",
-    info: "In this course you will learn how to properly develop an web application",
-    instructor: {
-      name: "xxxx xxxx",
-      prefix: "Dr.",
-      qualifications: "Bsc. Engineering in Software",
-    },
-  });
+  // const [course, setCourse] = useState({
+  //   courseName: "Web Application Development",
+  //   courseCode: "EE5201",
+  //   info: "In this course you will learn how to properly develop an web application",
+  //   instructor: {
+  //     name: "xxxx xxxx",
+  //     prefix: "Dr.",
+  //     qualifications: "Bsc. Engineering in Software",
+  //   },
+  // });
+  const { payload } = useSelector(coursesReceived);
+  const allCourses = payload.courses.list;
+  const { id } = useParams();
 
+  const course = allCourses.filter((val) => val._id === id);
+  // console.log(course[0].courseName);
   const [selectedTab, setselectedTab] = useState(0);
 
   const handleChange = (e, newIndex) => {
@@ -123,23 +118,23 @@ const EnrollPage = () => {
               paddingTop: "30px",
             }}>
             <Container className={classes.root}>
-              <Typography variant="h4">{course.courseName}</Typography>
+              <Typography variant="h4">{course[0].courseName}</Typography>
             </Container>
 
             <Container className={classes.root1}>
               <Grid container spacing={7} className={classes.grids}>
                 <Grid item md={3}>
                   <Paper variant="elevation" elevation={1} style={{ padding: "15px" }}>
-                    <Typography variant="h4">{course.courseCode}</Typography>
-                    <Typography variant="h5">{course.courseName}</Typography>
-                    <Typography variant="body2">{course.info}</Typography>
+                    <Typography variant="h4">{course[0].courseCode}</Typography>
+                    <Typography variant="h5">{course[0].courseName}</Typography>
+                    <Typography variant="body2">{course[0].info}</Typography>
                   </Paper>
                 </Grid>
                 <Grid item md={5}>
                   <Paper variant="elevation" elevation={1} style={{ padding: "15px" }}>
                     <Typography variant="h5">Instructor</Typography>
-                    <Typography variant="h4">{course.instructor.prefix + course.instructor.name}</Typography>
-                    <Typography variant="h5">{course.instructor.qualifications}</Typography>
+                    <Typography variant="h4">{course[0].instructor.name}</Typography>
+                    <Typography variant="h5">{course[0].instructor.qualifications}</Typography>
                   </Paper>
                 </Grid>
                 <Grid item md={3}>
@@ -179,7 +174,7 @@ const EnrollPage = () => {
             </Container>
             <Container className={classes.tabPanel}>
               {selectedTab === 1 && <Reqs />}
-              {selectedTab === 0 && <Outs />}
+              {selectedTab === 0 && <Outs info={course[0].info} />}
             </Container>
           </Container>
         </Fade>

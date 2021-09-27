@@ -6,9 +6,9 @@ import auth from "./../middleware/auth.js";
 
 const router = express.Router();
 
-// router.get("/", auth, getCourses);
+router.get("/", auth, getCourses);
 // router.post("/", auth, createCourses);
-router.get("/", getCourses);
+// router.get("/", getCourses);
 router.post("/", createCourses);
 
 export default router;
