@@ -68,7 +68,8 @@ body {
     height: 80px;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to bottom, rgb(0, 56, 95), rgb(0, 73, 139));
+    background: rgb(0, 73, 139);
+    /* background: rgb(0, 91, 165); */
     z-index: 2;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
     position: fixed;

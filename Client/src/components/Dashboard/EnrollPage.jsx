@@ -6,8 +6,9 @@ import { Typography } from "@material-ui/core/";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { coursesReceived } from "./../../store/courses.js";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { enrollCourse } from "../../store/auth.js";
+import { getUser } from "../../store/auth.js";
 const MyTabs = withStyles({
   indicator: {
     backgroundColor: "white",
@@ -84,22 +85,26 @@ const Outs = ({ info }) => {
 };
 
 const EnrollPage = () => {
-  // const [course, setCourse] = useState({
-  //   courseName: "Web Application Development",
-  //   courseCode: "EE5201",
-  //   info: "In this course you will learn how to properly develop an web application",
-  //   instructor: {
-  //     name: "xxxx xxxx",
-  //     prefix: "Dr.",
-  //     qualifications: "Bsc. Engineering in Software",
-  //   },
-  // });
+  const dispatch = useDispatch();
+
+  const profile = JSON.parse(localStorage.getItem("profile")).result;
+  const currentUserId = profile._id;
+  console.log(currentUserId);
+
+  dispatch(getUser({ id: currentUserId }));
+
   const { payload } = useSelector(coursesReceived);
   const allCourses = payload.courses.list;
+
   const { id } = useParams();
 
+  const enroll = () => {
+    dispatch(enrollCourse({ id }, currentUserId));
+    alert("Successfully enrolled for the course.Course will be available under My Courses tab next time you Log in");
+  };
+
   const course = allCourses.filter((val) => val._id === id);
-  // console.log(course[0].courseName);
+
   const [selectedTab, setselectedTab] = useState(0);
 
   const handleChange = (e, newIndex) => {
@@ -138,25 +143,15 @@ const EnrollPage = () => {
                   </Paper>
                 </Grid>
                 <Grid item md={3}>
-                  {/* <Paper
-                    variant="elevation"
-                    elevation={1}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      padding: "15px",
-                    }}> */}
                   <Button
+                    onClick={enroll}
                     variant="contained"
                     color="primary"
                     style={{
-                      // marginBottom: "20px",
-                      background: "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
+                      background: " rgb(0, 73, 139)",
                     }}>
                     Enroll Now
                   </Button>
-                  {/* <TextField variant="filled" label="Password" type="password" /> */}
-                  {/* </Paper> */}
                 </Grid>
               </Grid>
             </Container>

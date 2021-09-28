@@ -29,9 +29,8 @@ const NavBar = ({ value }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  setTimeout(() => {
-    dispatch(loadCourses());
-  }, 500);
+  dispatch(loadCourses());
+
   const [selectedTab, setselectedTab] = useState(value);
 
   const [user, setuser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -44,10 +43,8 @@ const NavBar = ({ value }) => {
     localStorage.clear();
     history.push("/");
     setuser(null);
-    // dispatch(logout());
   };
 
-  // console.log(user);
   const handleChange = (e, newIndex) => {
     setselectedTab(newIndex);
   };

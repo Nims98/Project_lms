@@ -7,7 +7,7 @@ const authSlice = createSlice({
     reducers: {
         auth: (auth, action) => {
             localStorage.setItem("profile", JSON.stringify(action.payload));
-            console.log(action.payload);
+            // console.log(action.payload);
             return {...auth, authData: action.payload };
         },
         logout: (auth, action) => {
@@ -15,13 +15,23 @@ const authSlice = createSlice({
             return {...auth, authData: null };
         },
         userUpdated: (auth, action) => {
+            // console.log(action.payload);
+            return action.payload;
+        },
+        courseEnrolled: (auth, action) => {
+            console.log(action.payload);
+            const myCourses = action.payload.courses;
+            localStorage.setItem("courses", JSON.stringify(myCourses));
+            return action.payload;
+        },
+        userReceived: (auth, action) => {
             console.log(action.payload);
             return action.payload;
         },
     },
 });
 
-export const { auth, logout, userUpdated } = authSlice.actions;
+export const { auth, logout, userUpdated, courseEnrolled, userReceived } = authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -67,4 +77,22 @@ export const updateUser = (user, currentUserId) => (dispatch) => {
         })
     );
 };
-// const url = "/users/signup";
+
+export const enrollCourse = (courseId, currentUserId) => (dispatch) => {
+    dispatch(
+        apiCallBegan({
+            url: `users/enroll-course/${currentUserId}`,
+            method: "patch",
+            data: courseId,
+            Onsuccess: courseEnrolled.type,
+        })
+    );
+};
+
+export const getUser = (userId) => {
+    apiCallBegan({
+        url: `users/${userId}`,
+        method: "get",
+        Onsuccess: userReceived.type,
+    });
+};

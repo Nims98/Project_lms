@@ -21,17 +21,34 @@ const useStyles = makeStyles({
 const Courses = () => {
   const classes = useStyles();
 
+  const resoure = () => {
+    if (!localStorage.getItem("courses")) {
+      const profile = JSON.parse(localStorage.getItem("profile")).result;
+      const courseIds = profile.courses;
+      return courseIds;
+    }
+    if (localStorage.getItem("courses")) {
+      const courseIds = JSON.parse(localStorage.getItem("courses"));
+      return courseIds;
+    }
+  };
+
+  const courseIds = resoure();
+
   const { payload } = useSelector(coursesReceived);
-  const myCourses = payload.courses.list;
+  const allCourses = payload.courses.list;
+
+  const myCourses = allCourses.filter((val) => courseIds.includes(val._id));
+  console.log(myCourses);
 
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     setCourses(myCourses);
-  }, [myCourses]);
+  }, [allCourses]);
 
   const [Search, setSearch] = useState("");
 
-  return !myCourses.length ? (
+  return !allCourses.length ? (
     <div
       style={{
         padding: "15px",

@@ -20,11 +20,9 @@ import image from "./../../images/pdf.svg";
 
 const useStyles = makeStyles({
   main: {
-    // "linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139))",
     display: "flex",
     width: "75%",
     height: "100vh",
-    // justifyContent: "left",
     overflow: "hidden",
     overflowY: "scroll",
   },
@@ -54,7 +52,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Item = () => {
+const Item = ({ category }) => {
   const classes = useStyles();
 
   return (
@@ -93,10 +91,9 @@ const View = ({ info }) => {
       </Container>
       <Container
         style={{
-          // width: "1100px",
           height: "400px",
           background: "white",
-          margin: "40px",
+          margin: "40px 40px 100px 40px",
           borderRadius: "7px",
           overflow: "hidden",
           overflowX: "scroll",
@@ -128,11 +125,10 @@ const CourseView = () => {
                 <View info="Reading Material" />
                 <View info="Lectures" />
                 <View info="Assignments" />
-                <View info="Assignments" />
               </Grid>
             </div>
             <div className={classes.side}>
-              <Container style={{ width: "80%" }}>
+              <Container style={{ width: "90%" }}>
                 <Formik
                   initialValues={{
                     feedBack: "",
@@ -165,7 +161,7 @@ const CourseView = () => {
                             fullWidth
                             multiline
                             variant="outlined"
-                            rows={10}
+                            rows={16}
                             id="feedBack"
                             label="Write a feedback..."
                             name="feedBack"

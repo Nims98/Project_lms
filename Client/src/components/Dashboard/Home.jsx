@@ -85,11 +85,7 @@ const Allcourses = () => {
                 .map((course) => {
                   return (
                     <Grid item sm={6} md={4} lg={3} key={course._id}>
-                      {/* <ButtonBase onClick={openCourse(course)}> */}
-                      {/* <Link to="/dashboard/all-courses/enroll-course" style={{ textDecoration: "none" }}> */}
                       <Course course={course} enrolled={false} />
-                      {/* </Link> */}
-                      {/* </ButtonBase> */}
                     </Grid>
                   );
                 })}
