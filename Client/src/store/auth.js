@@ -24,10 +24,6 @@ const authSlice = createSlice({
             localStorage.setItem("courses", JSON.stringify(myCourses));
             return action.payload;
         },
-        userReceived: (auth, action) => {
-            console.log(action.payload);
-            return action.payload;
-        },
     },
 });
 
@@ -87,12 +83,4 @@ export const enrollCourse = (courseId, currentUserId) => (dispatch) => {
             Onsuccess: courseEnrolled.type,
         })
     );
-};
-
-export const getUser = (userId) => {
-    apiCallBegan({
-        url: `users/${userId}`,
-        method: "get",
-        Onsuccess: userReceived.type,
-    });
 };

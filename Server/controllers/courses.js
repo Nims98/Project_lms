@@ -21,3 +21,10 @@ export const createCourses = async(req, res) => {
         res.status(409).json({ message: error.message });
     }
 };
+
+export const addReview = async(req, res) => {
+    const { id: _id } = req.params;
+    const { review } = req.body;
+    const updatedCourse = await Course.findByIdAndUpdate(_id, { $addToSet: { reviews: [review] } }, { new: true });
+    res.json(updatedCourse);
+};

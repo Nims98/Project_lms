@@ -9,7 +9,7 @@ const courseSchema = mongoose.Schema({
         qualifications: String,
     },
     learningOutcomes: [String],
-    reviews: String,
+    reviews: [String],
     passcode: String,
 });
 

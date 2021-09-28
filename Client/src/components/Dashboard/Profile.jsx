@@ -17,6 +17,8 @@ import FileInputComponent from "react-file-input-previews-base64";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { VisibilityOff, Visibility } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
+import { Send } from "@material-ui/icons";
+
 import { updateUser } from "../../store/auth.js";
 
 const theme = createTheme();

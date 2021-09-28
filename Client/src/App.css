@@ -40,13 +40,10 @@ body {
 
 .root .main {
     display: flex;
-    background: linear-gradient(to top, rgb(0, 44, 76), rgb(0, 73, 139));
     width: 75%;
     height: 100vh;
-    /* justifyContent: left; */
-    /* overflow: hidden; */
-    overflow-Y: scroll;
-    padding-bottom: 100px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .root .side {
@@ -54,7 +51,7 @@ body {
     width: 25%;
     height: 100vh;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .header {

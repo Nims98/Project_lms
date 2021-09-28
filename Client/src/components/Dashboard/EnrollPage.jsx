@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 import { coursesReceived } from "./../../store/courses.js";
 import { useSelector, useDispatch } from "react-redux";
 import { enrollCourse } from "../../store/auth.js";
-import { getUser } from "../../store/auth.js";
 const MyTabs = withStyles({
   indicator: {
     backgroundColor: "white",
@@ -54,29 +53,21 @@ const useStyles = makeStyles({
   },
 });
 
-const Reqs = () => {
+const Reviews = ({ reviews }) => {
   return (
     <div>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
-      <Typography variant="body1">Review</Typography>
+      {reviews.map((review) => (
+        <ul>
+          <li>
+            <Typography variant="body1">{review}</Typography>
+          </li>
+        </ul>
+      ))}
     </div>
   );
 };
 
-const Outs = ({ info }) => {
+const Description = ({ info }) => {
   return (
     <div>
       <Typography variant="body1">{info}</Typography>
@@ -90,8 +81,6 @@ const EnrollPage = () => {
   const profile = JSON.parse(localStorage.getItem("profile")).result;
   const currentUserId = profile._id;
   console.log(currentUserId);
-
-  dispatch(getUser({ id: currentUserId }));
 
   const { payload } = useSelector(coursesReceived);
   const allCourses = payload.courses.list;
@@ -168,8 +157,8 @@ const EnrollPage = () => {
               </MyTabs>
             </Container>
             <Container className={classes.tabPanel}>
-              {selectedTab === 1 && <Reqs />}
-              {selectedTab === 0 && <Outs info={course[0].info} />}
+              {selectedTab === 1 && <Reviews reviews={course[0].reviews} />}
+              {selectedTab === 0 && <Description info={course[0].info} />}
             </Container>
           </Container>
         </Fade>

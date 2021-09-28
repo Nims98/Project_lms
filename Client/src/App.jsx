@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Fade } from "@material-ui/core";
 import HomePage from "./components/LandingPage/HomePage";
 import EnrollPage from "./components/Dashboard/EnrollPage";
-import CourseView from "./components/Dashboard/CourseView";
+import CourseView from "./components/Dashboard/CourseView/CourseView";
 import NavBar from "./components/Dashboard/NavBar";
 import MyCourses from "./components/Dashboard/MyCourses";
 import AddCourse from "./components/AddCourse";
@@ -22,7 +22,7 @@ const App = () => {
             <Route exact path="/dashboard/my-courses" component={MyCourses} />
             <Route exact path="/dashboard/profile" component={Profile} />
             <Route path="/dashboard/all-courses/enroll-course/:id" component={EnrollPage} />
-            <Route path="/dashboard/my-courses/course-view" component={CourseView} />
+            <Route path="/dashboard/my-courses/course-view/:id" component={CourseView} />
             <Route exact path="/" component={HomePage} />
             {/* <Route exact path="/sign-up" component={SignUp} /> */}
             <Route exact path="/dashboard/add-course" component={AddCourse} />

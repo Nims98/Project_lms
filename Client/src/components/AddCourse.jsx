@@ -76,7 +76,6 @@ const AddCourse = () => {
 
               dispatch(
                 addCourse({
-                  // _id: Date.now(),
                   courseName: values.courseName,
                   courseCode: values.courseCode,
                   info: values.info,
@@ -84,7 +83,7 @@ const AddCourse = () => {
                     qualifications: values.degree,
                     name: values.instructor,
                   },
-                  learningOutcomes: values.learningOutcomes,
+
                   passcode: values.passcode,
                 })
               );
@@ -96,7 +95,7 @@ const AddCourse = () => {
                   Info : ${values.info}
                   Instructor Name : ${values.instructor}
                   Degree : ${values.degree}
-                  Learning Outcomes: ${values.learningOutcomes}
+                
                   Passcode: ${values.passcode}`
               );
             }, 100);

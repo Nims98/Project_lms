@@ -228,9 +228,7 @@ const SignUp = () => {
                         {isSignUp && (
                           <Box
                             sx={{
-                              // width: "100%",
                               display: "flex",
-                              // justifyContent: "center",
                               flexDirection: "row",
                             }}>
                             <Field

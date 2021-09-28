@@ -24,9 +24,14 @@ const CourseSilce = createSlice({
         courseAdded: (courses, action) => {
             courses.list.push(action.payload);
         },
+        courseUpdated: (courses, action) => {
+            console.log(action.payload);
+            return action.payload;
+        },
     },
 });
-export const { courseAdded, coursesReceived, coursesRequested, coursesRequestedFailed } = CourseSilce.actions;
+export const { courseAdded, courseUpdated, coursesReceived, coursesRequested, coursesRequestedFailed } =
+CourseSilce.actions;
 
 export default CourseSilce.reducer;
 
@@ -58,3 +63,14 @@ export const addCourse = (course) =>
         data: course,
         Onsuccess: courseAdded.type,
     });
+
+export const addReview = (review, courseId) => (dispatch) => {
+    dispatch(
+        apiCallBegan({
+            url: `all-courses/${courseId}`,
+            method: "patch",
+            data: review,
+            Onsuccess: courseUpdated.type,
+        })
+    );
+};

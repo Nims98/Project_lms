@@ -88,17 +88,3 @@ export const enrollCourse = async(req, res) => {
     const enrolledCourse = await User.findByIdAndUpdate(_id, { $addToSet: { courses: [id] } }, { new: true });
     res.json(enrolledCourse);
 };
-
-export const getUser = async(req, res) => {
-    const { id: _id } = req.params;
-    try {
-        const user = await User.findById(_id, (error, data) => {
-            if (!error) res.status(200).json(data);
-            else res.status(404).json({ error });
-        });
-        console.log(user);
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(404).json({ error });
-    }
-};
