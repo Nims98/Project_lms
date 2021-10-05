@@ -8,6 +8,7 @@ const authSlice = createSlice({
         auth: (auth, action) => {
             localStorage.setItem("profile", JSON.stringify(action.payload));
             console.log(action.payload);
+
             return {...auth, authData: action.payload };
         },
         authFailed: (auth, action) => {
@@ -45,7 +46,7 @@ export const addUser = (user, history) => async(dispatch) => {
                 Onsuccess: auth.type,
             })
         );
-        history.push("/dashboard/all-courses");
+        // history.push("/dashboard/all-courses");
     } catch (error) {
         console.log(error);
     }
@@ -61,7 +62,8 @@ export const loginUser = (user, history) => (dispatch) => {
                 OnError: authFailed,
             })
         );
-        history.push("/dashboard/all-courses");
+
+        // history.push("/dashboard/all-courses");
     } catch (error) {
         history.push("/");
         console.log(error);

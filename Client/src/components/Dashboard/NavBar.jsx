@@ -37,7 +37,7 @@ const NavBar = ({ value }) => {
 
   useEffect(() => {
     setuser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+  }, location);
 
   const logout = () => {
     localStorage.clear();

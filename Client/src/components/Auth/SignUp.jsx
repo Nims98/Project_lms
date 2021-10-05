@@ -6,28 +6,27 @@ import Fade from "@material-ui/core/Fade";
 import Grow from "@material-ui/core/Grow";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { createTheme, ThemeProvider } from "@material-ui/core/";
 import { Form, Formik, Field } from "formik";
 import { TextField } from "formik-material-ui";
 // import { GoogleLogin } from "react-google-login";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addUser } from "../../store/auth.js";
 import { loginUser } from "../../store/auth.js";
 import { VisibilityOff, Visibility } from "@material-ui/icons";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { auth } from "../../store/auth.js";
 
-// import { userAdded } from "../../store/users.js";
 const theme = createTheme();
 
 const SignUp = () => {
-  const [isSignUp, setisSignUp] = React.useState(false);
+  const [isSignUp, setisSignUp] = useState(false);
 
-  // const { payload } = useSelector(userAdded);
-  // const res = payload;
   const switchMode = () => {
     setisSignUp((prevIsSignUp) => !prevIsSignUp);
   };
@@ -38,6 +37,16 @@ const SignUp = () => {
   };
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [authState, setAuthState] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.getItem("profile")) {
+      const token = JSON.parse(localStorage.getItem("profile")).token;
+      if (token) history.push("/dashboard/all-courses");
+      setAuthState(JSON.parse(localStorage.getItem("profile")));
+    } else history.push("/");
+  }, [useSelector(auth)]);
 
   // const googleSuccess = async (res) => {
   //   const result = res?.profileObj;
@@ -111,36 +120,34 @@ const SignUp = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              setSubmitting(false);
+            setSubmitting(false);
 
-              if (!isSignUp) {
-                dispatch(
-                  loginUser(
-                    {
-                      email: values.email,
-                      password: values.password,
-                    },
-                    history
-                  )
-                );
-              }
-              if (isSignUp) {
-                dispatch(
-                  addUser(
-                    {
-                      firstName: values.firstName,
-                      lastName: values.lastName,
-                      email: values.email,
-                      phone: values.phone,
-                      address: values.address,
-                      password: values.password,
-                    },
-                    history
-                  )
-                );
-              }
-            }, 500);
+            if (!isSignUp) {
+              dispatch(
+                loginUser(
+                  {
+                    email: values.email,
+                    password: values.password,
+                  },
+                  history
+                )
+              );
+            }
+            if (isSignUp) {
+              dispatch(
+                addUser(
+                  {
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    email: values.email,
+                    phone: values.phone,
+                    address: values.address,
+                    password: values.password,
+                  },
+                  history
+                )
+              );
+            }
           }}>
           {({ submitForm }) => (
             <ThemeProvider theme={theme}>
@@ -215,6 +222,8 @@ const SignUp = () => {
                         )}
 
                         <Field
+                          error={authState ? true : false}
+                          helperText={authState !== "Password Incorrect" && authState}
                           label="Email Address"
                           component={TextField}
                           margin="normal"
@@ -249,6 +258,8 @@ const SignUp = () => {
                         )}
 
                         <Field
+                          error={authState ? true : false}
+                          helperText={authState === "Password Incorrect" && authState}
                           label="Password"
                           component={TextField}
                           margin="normal"
@@ -261,11 +272,9 @@ const SignUp = () => {
                           InputProps={{
                             endAdornment: (
                               <InputAdornment position="start">
-                                {showPassword ? (
-                                  <VisibilityOff fontSize="small" onClick={ShowPassword} />
-                                ) : (
-                                  <Visibility fontSize="small" onClick={ShowPassword} />
-                                )}
+                                <IconButton onClick={ShowPassword}>
+                                  {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                                </IconButton>
                               </InputAdornment>
                             ),
                           }}

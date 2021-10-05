@@ -1,10 +1,6 @@
-// import axios from "axios";
-
-// const url = "http://localhost:5000/all-courses";
-
-// export const fetchCourses = () => axios.get(url);
 import * as actions from "./api.js";
 import axios from "axios";
+
 const api =
     ({ dispatch }) =>
     (next) =>
@@ -23,7 +19,7 @@ const api =
                 headers,
                 data,
             });
-            // console.log(response.headers);
+
             //General
             dispatch(actions.apiCallSuccess(response.data));
             //Specific
