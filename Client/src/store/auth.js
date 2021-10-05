@@ -7,15 +7,18 @@ const authSlice = createSlice({
     reducers: {
         auth: (auth, action) => {
             localStorage.setItem("profile", JSON.stringify(action.payload));
-            // console.log(action.payload);
+            console.log(action.payload);
             return {...auth, authData: action.payload };
+        },
+        authFailed: (auth, action) => {
+            console.log(action.payload);
+            return action.payload;
         },
         logout: (auth, action) => {
             localStorage.clear();
             return {...auth, authData: null };
         },
         userUpdated: (auth, action) => {
-            // console.log(action.payload);
             return action.payload;
         },
         courseEnrolled: (auth, action) => {
@@ -27,7 +30,7 @@ const authSlice = createSlice({
     },
 });
 
-export const { auth, logout, userUpdated, courseEnrolled, userReceived } = authSlice.actions;
+export const { auth, authFailed, logout, userUpdated, courseEnrolled, userReceived } = authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -55,10 +58,12 @@ export const loginUser = (user, history) => (dispatch) => {
                 method: "post",
                 data: user,
                 Onsuccess: auth.type,
+                OnError: authFailed,
             })
         );
         history.push("/dashboard/all-courses");
     } catch (error) {
+        history.push("/");
         console.log(error);
     }
 };

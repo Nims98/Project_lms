@@ -60,6 +60,7 @@ const Courses = () => {
         alignItems: "center",
       }}>
       <CircularProgress size={50} />
+      <Typography>Currenly you don't have any courses</Typography>;
     </div>
   ) : (
     <div style={{ display: "flex", background: "white" }}>

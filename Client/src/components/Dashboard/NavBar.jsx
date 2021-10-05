@@ -83,7 +83,14 @@ const NavBar = ({ value }) => {
             </Avatar>
             <Typography>{user.result.name}</Typography>
             <Button
-              style={{ margin: "25px 25px 25px 40px", fontWeight: "600", background: "whitesmoke" }}
+              style={{
+                margin: "25px 25px 25px 40px",
+                textTransform: "none",
+                fontWeight: "500",
+                background: "whitesmoke",
+                fontSize: 18,
+                height: 35,
+              }}
               variant="contained"
               size="small"
               onClick={logout}>

@@ -12,38 +12,50 @@ import { Send } from "@material-ui/icons";
 import "./../../../App.css";
 import { Grid } from "@material-ui/core";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { coursesReceived } from "./../../../store/courses.js";
+
 import { addReview } from "../../../store/courses";
 import View from "./view";
 
 const theme = createTheme();
-const Profile = () => {
+const CourseView = () => {
   const dispatch = useDispatch();
+  const { payload } = useSelector(coursesReceived);
+  const allCourses = payload.courses.list;
+
   const { id } = useParams();
+  const course = allCourses.filter((val) => val._id === id);
+
   console.log(id);
+  console.log(course);
   return (
     <Fade in>
       <div style={{ width: "100vw", marginTop: "80px", background: "rgba(0,0,0,0.08)" }}>
         <div className="root">
           <div className="main">
             <Grid container spacing={0} direction="row">
+              <Typography variant="h3" style={{ margin: "20px 0 0 40px" }}>
+                {course[0].courseName}
+              </Typography>
               <View info="Reading Material" />
               <View info="Lectures" />
               <View info="Assignments" />
             </Grid>
           </div>
           <div className="side">
-            <Container style={{ width: "90%" }}>
+            <Container style={{ width: "90%", marginBottom: "70%" }}>
               <Formik
                 initialValues={{
                   feedback: "",
                 }}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting, resetForm }) => {
                   setTimeout(() => {
                     setSubmitting(false);
                     dispatch(addReview({ review: values.feedback }, id));
-                    alert(JSON.stringify(values, null, 2));
+                    alert("Feedback sent");
                   }, 500);
+                  resetForm();
                 }}>
                 {({ submitForm }) => (
                   <ThemeProvider theme={theme}>
@@ -97,4 +109,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default CourseView;

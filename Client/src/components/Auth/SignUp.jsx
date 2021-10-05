@@ -140,8 +140,6 @@ const SignUp = () => {
                   )
                 );
               }
-
-              alert(JSON.stringify(values, null, 2));
             }, 500);
           }}>
           {({ submitForm }) => (
@@ -298,10 +296,13 @@ const SignUp = () => {
 
                         <Button
                           style={{
-                            fontWeight: "700",
+                            fontWeight: "500",
+                            fontSize: 18,
+                            height: 35,
                             background: "#00498B",
                             color: "white",
-                            margin: "20px 0 10px 0",
+                            margin: "20px 0 0px 0",
+                            textTransform: "none",
                           }}
                           onClick={submitForm}
                           fullWidth

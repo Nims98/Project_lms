@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Fade, Typography, Grid, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Course from "./Course";
-import { TextField, CircularProgress } from "@material-ui/core";
+import { TextField, CircularProgress, Button } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import { useSelector } from "react-redux";
-import { coursesReceived } from "./../../store/courses.js";
+import { coursesReceived } from "../../store/courses.js";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   container: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
     height: "100vh",
     overflow: "hidden",
     overflowY: "scroll",
+    marginLeft: "320px",
   },
 });
 
@@ -22,13 +24,16 @@ const Allcourses = () => {
   const classes = useStyles();
   const { payload } = useSelector(coursesReceived);
   const allCourses = payload.courses.list;
-
+  const history = useHistory();
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     setCourses(allCourses);
   }, [allCourses]);
 
+  const createCourse = () => {
+    history.push("/dashboard/all-courses/add-course");
+  };
   const [Search, setSearch] = useState("");
 
   return !allCourses.length ? (
@@ -45,7 +50,7 @@ const Allcourses = () => {
       <CircularProgress size={50} />
     </div>
   ) : (
-    <div style={{ display: "flex", background: "white" }}>
+    <div style={{ display: "flex", background: "white", justifyContent: "center" }}>
       <Container className={classes.container}>
         <Fade in>
           <div style={{ padding: "15px", width: "100vw", marginTop: "80px" }}>
@@ -93,6 +98,19 @@ const Allcourses = () => {
           </div>
         </Fade>
       </Container>
+      <Button
+        onClick={createCourse}
+        variant="contained"
+        style={{
+          margin: "100px 20px 0 0",
+          height: "40px",
+          background: "#00498B",
+          textTransform: "none",
+          fontSize: 16,
+          color: "white",
+        }}>
+        Create Course
+      </Button>
     </div>
   );
 };

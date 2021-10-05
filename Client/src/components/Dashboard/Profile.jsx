@@ -72,7 +72,7 @@ const Profile = () => {
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
               errors.email = "Invalid email address";
             }
-            if (values.phone.length !== 0) {
+            if (values.phone) {
               if (!/^[0-9\b]+$/i.test(values.phone) || values.phone.length !== 10) {
                 errors.phone = "Enter a Valid Phone Number";
               }
@@ -194,8 +194,8 @@ const Profile = () => {
                               imagePreview={true}
                               labelStyle={{ fontSize: 16, color: "rgba(0, 0, 0, 0.55)", display: "block" }}
                               imageStyle={{
-                                borderRadius: "100px",
-                                width: "10vmin",
+                                // borderRadius: "100px",
+                                // width: "10vmin",
                                 height: "10vmin",
                                 marginTop: 5,
                                 marginBottom: 5,
@@ -330,10 +330,12 @@ const Profile = () => {
 
                         <Button
                           style={{
-                            fontWeight: "700",
+                            fontWeight: "500",
+                            fontSize: 15,
                             background: "#00498B",
                             color: "white",
                             margin: "20px 0 10px 0",
+                            textTransform: "none",
                           }}
                           onClick={submitForm}
                           variant="contained"

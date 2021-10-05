@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { coursesReceived } from "./../../store/courses.js";
 import { useSelector, useDispatch } from "react-redux";
 import { enrollCourse } from "../../store/auth.js";
+
 const MyTabs = withStyles({
   indicator: {
     backgroundColor: "white",
@@ -89,7 +90,7 @@ const EnrollPage = () => {
 
   const enroll = () => {
     dispatch(enrollCourse({ id }, currentUserId));
-    alert("Successfully enrolled for the course.Course will be available under My Courses tab next time you Log in");
+    alert("Successfully enrolled for the course.Course will be available under My Courses tab.");
   };
 
   const course = allCourses.filter((val) => val._id === id);

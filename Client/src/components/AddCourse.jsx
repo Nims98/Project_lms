@@ -33,6 +33,8 @@ const degrees = [
 ];
 const AddCourse = () => {
   const dispatch = useDispatch();
+  const profile = JSON.parse(localStorage.getItem("profile")).result;
+  const isAdmin = profile.admin;
 
   return (
     <Fade in>
@@ -52,7 +54,6 @@ const AddCourse = () => {
             info: "",
             instructor: "",
             degree: "",
-            passcode: "",
           }}
           validate={(values) => {
             const errors = {};
@@ -65,9 +66,7 @@ const AddCourse = () => {
             if (!values.instructor) {
               errors.instructor = "Required";
             }
-            if (!values.passcode) {
-              errors.passcode = "Required";
-            }
+
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -83,8 +82,6 @@ const AddCourse = () => {
                     qualifications: values.degree,
                     name: values.instructor,
                   },
-
-                  passcode: values.passcode,
                 })
               );
 
@@ -94,9 +91,7 @@ const AddCourse = () => {
                   Course Code : ${values.courseCode}
                   Info : ${values.info}
                   Instructor Name : ${values.instructor}
-                  Degree : ${values.degree}
-                
-                  Passcode: ${values.passcode}`
+                  Degree : ${values.degree}`
               );
             }, 100);
           }}>
@@ -110,7 +105,7 @@ const AddCourse = () => {
                   background: "#EBEBEB",
                   borderRadius: "10px",
                   padding: "20px",
-                  width: "700px",
+                  width: "850px",
                 }}>
                 <CssBaseline />
                 <Form>
@@ -214,14 +209,14 @@ const AddCourse = () => {
                         margin="normal"
                         fullWidth
                         multiline
-                        maxRows={4}
-                        minRows={2}
+                        maxRows={6}
+                        minRows={5}
                         variant="outlined"
                         id="info"
                         label="Course Information"
                         name="info"
                       />
-                      <Field
+                      {/* <Field
                         component={TextField}
                         margin="normal"
                         required
@@ -230,7 +225,7 @@ const AddCourse = () => {
                         label="Passcode"
                         type="password"
                         id="passcode"
-                      />
+                      /> */}
                       <Button
                         style={{
                           background: "#00498B",
