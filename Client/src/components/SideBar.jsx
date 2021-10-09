@@ -19,10 +19,10 @@ const SideBar = () => {
             <ListItemText primary="Profile" />
           </ListItem>
           <ListItem button>
-            <ListItemText primary="Departments" />
+            <ListItemText primary="All Courses" />
           </ListItem>
           <ListItem button>
-            <ListItemText primary="Semesters" />
+            <ListItemText primary="My Courses" />
           </ListItem>
         </List>
       </Drawer>

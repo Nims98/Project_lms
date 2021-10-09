@@ -18,6 +18,7 @@ import { coursesReceived } from "./../../../store/courses.js";
 
 import { addReview } from "../../../store/courses";
 import View from "./view";
+import Allcourses from "./../AllCourses";
 
 const theme = createTheme();
 const CourseView = () => {
@@ -30,26 +31,28 @@ const CourseView = () => {
 
   console.log(id);
   console.log(course);
-  return (
+  return !course[0] ? (
+    <div
+      style={{
+        padding: "15px",
+        width: "100vw",
+        height: "80vh",
+        marginTop: "80px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+      <CircularProgress size={50} />
+    </div>
+  ) : (
     <Fade in>
       <div style={{ width: "100vw", marginTop: "80px", background: "rgba(0,0,0,0.08)" }}>
         <div className="root">
           <div className="main">
             <Grid container spacing={0} direction="row">
-              {!course[0] ? (
-                <div
-                  style={{
-                    width: "100vw",
-                    height: "80vh",
-                    marginTop: "80px",
-                  }}>
-                  <CircularProgress size={50} />
-                </div>
-              ) : (
-                <Typography variant="h3" style={{ margin: "20px 0 0 40px" }}>
-                  {course[0].courseName}
-                </Typography>
-              )}
+              <Typography variant="h3" style={{ margin: "20px 0 0 40px" }}>
+                {course[0].courseName}
+              </Typography>
               <View info="Reading Material" />
               <View info="Lectures" />
               <View info="Assignments" />
