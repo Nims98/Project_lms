@@ -332,7 +332,7 @@ const Profile = () => {
                           style={{
                             fontWeight: "500",
                             fontSize: 15,
-                            background: "#00498B",
+                            background: "#1444FC",
                             color: "white",
                             margin: "20px 0 10px 0",
                             textTransform: "none",

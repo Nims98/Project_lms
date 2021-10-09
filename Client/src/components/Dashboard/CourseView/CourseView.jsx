@@ -11,6 +11,7 @@ import { TextField } from "formik-material-ui";
 import { Send } from "@material-ui/icons";
 import "./../../../App.css";
 import { Grid } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { coursesReceived } from "./../../../store/courses.js";
@@ -35,16 +36,27 @@ const CourseView = () => {
         <div className="root">
           <div className="main">
             <Grid container spacing={0} direction="row">
-              <Typography variant="h3" style={{ margin: "20px 0 0 40px" }}>
-                {course[0].courseName}
-              </Typography>
+              {!course[0] ? (
+                <div
+                  style={{
+                    width: "100vw",
+                    height: "80vh",
+                    marginTop: "80px",
+                  }}>
+                  <CircularProgress size={50} />
+                </div>
+              ) : (
+                <Typography variant="h3" style={{ margin: "20px 0 0 40px" }}>
+                  {course[0].courseName}
+                </Typography>
+              )}
               <View info="Reading Material" />
               <View info="Lectures" />
               <View info="Assignments" />
             </Grid>
           </div>
           <div className="side">
-            <Container style={{ width: "90%", marginBottom: "70%" }}>
+            <Container style={{ width: "90%", Top: 100, height: 800 }}>
               <Formik
                 initialValues={{
                   feedback: "",
@@ -92,7 +104,7 @@ const CourseView = () => {
                             variant="contained"
                             color="primary"
                             endIcon={<Send />}
-                            style={{ background: "#00498B" }}>
+                            style={{ background: "#1444FC" }}>
                             Send
                           </Button>
                         </Form>

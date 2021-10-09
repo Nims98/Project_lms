@@ -55,12 +55,12 @@ const Item = () => {
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, modi fugiat perferendis explicabo
-            blanditiis, <facil></facil>is suscipit laudantium
+            blanditiis, facilis suscipit laudantium
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant="contained" size="small" style={{ background: "#00498B", color: "white" }}>
+        <Button variant="contained" size="small" style={{ background: "#1444FC", color: "white" }}>
           Download
         </Button>
         <Button variant="contained" size="small" style={{ background: "whitesmoke" }}>

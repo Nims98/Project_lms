@@ -3,6 +3,7 @@ import { Button, Paper } from "@material-ui/core";
 import { Container, Grid, Fade } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core/";
+import { CircularProgress } from "@material-ui/core";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { coursesReceived } from "./../../store/courses.js";
@@ -49,7 +50,8 @@ const useStyles = makeStyles({
     overflow: "hidden",
     overflowY: "scroll",
     height: "300px",
-    background: "#C3CCCC",
+    background: "white",
+    borderRadius: 10,
     paddingTop: "10px",
   },
 });
@@ -83,8 +85,7 @@ const EnrollPage = () => {
   const currentUserId = profile._id;
   console.log(currentUserId);
 
-  const { payload } = useSelector(coursesReceived);
-  const allCourses = payload.courses.list;
+  // const allCourses =;
 
   const { id } = useParams();
 
@@ -93,7 +94,7 @@ const EnrollPage = () => {
     alert("Successfully enrolled for the course.Course will be available under My Courses tab.");
   };
 
-  const course = allCourses.filter((val) => val._id === id);
+  const course = useSelector(coursesReceived).payload.courses.list.filter((val) => val._id === id);
 
   const [selectedTab, setselectedTab] = useState(0);
 
@@ -102,13 +103,26 @@ const EnrollPage = () => {
   };
   const classes = useStyles();
 
-  return (
+  return !course[0] ? (
+    <div
+      style={{
+        padding: "15px",
+        width: "100vw",
+        height: "80vh",
+        marginTop: "80px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+      <CircularProgress size={50} />
+    </div>
+  ) : (
     <div>
       <div style={{ width: "100vw", marginTop: "80px" }}>
         <Fade in>
           <Container
             style={{
-              background: "linear-gradient(to top, rgb(250, 250, 250), rgb(245,245,245))",
+              background: " rgb(245,245,245)",
               height: "100vh",
               paddingTop: "30px",
             }}>
@@ -138,7 +152,7 @@ const EnrollPage = () => {
                     variant="contained"
                     color="primary"
                     style={{
-                      background: " rgb(0, 73, 139)",
+                      background: "#1444FC",
                     }}>
                     Enroll Now
                   </Button>
@@ -147,7 +161,7 @@ const EnrollPage = () => {
             </Container>
             <Container
               style={{
-                background: "#004480",
+                background: "#1444FC",
                 marginTop: "100px",
                 borderRadius: "5px 5px 0 0",
                 color: "white",

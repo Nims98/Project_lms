@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { addUser } from "../../store/auth.js";
 import { loginUser } from "../../store/auth.js";
+import { useLocation } from "react-router-dom";
 import { VisibilityOff, Visibility } from "@material-ui/icons";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { auth } from "../../store/auth.js";
@@ -37,15 +38,16 @@ const SignUp = () => {
   };
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const location = useLocation();
   const [authState, setAuthState] = useState(null);
 
   useEffect(() => {
     if (localStorage.getItem("profile")) {
       const token = JSON.parse(localStorage.getItem("profile")).token;
-      if (token) history.push("/dashboard/all-courses");
+      if (token) history.push("/dashboard/my-courses");
       setAuthState(JSON.parse(localStorage.getItem("profile")));
-    } else history.push("/");
+      if (!token) history.push("/");
+    }
   }, [useSelector(auth)]);
 
   // const googleSuccess = async (res) => {
@@ -308,7 +310,7 @@ const SignUp = () => {
                             fontWeight: "500",
                             fontSize: 18,
                             height: 35,
-                            background: "#00498B",
+                            background: "#1444FC",
                             color: "white",
                             margin: "20px 0 0px 0",
                             textTransform: "none",

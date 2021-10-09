@@ -228,7 +228,7 @@ const AddCourse = () => {
                       /> */}
                       <Button
                         style={{
-                          background: "#00498B",
+                          background: "#1444FC",
                           color: "white",
                           margin: "20px 0 10px 0",
                         }}

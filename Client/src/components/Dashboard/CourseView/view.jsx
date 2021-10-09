@@ -25,6 +25,11 @@ const View = ({ info }) => {
         }}>
         <Item />
         <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
       </Container>
     </Grid>
   );

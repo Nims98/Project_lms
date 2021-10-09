@@ -21,7 +21,7 @@ const MyTabs = withStyles({
 const MyTab = withStyles({
   root: {
     fontSize: "14px",
-    fontWeight: 600,
+    fontWeight: 500,
   },
 })((props) => <Tab disableRipple {...props} />);
 

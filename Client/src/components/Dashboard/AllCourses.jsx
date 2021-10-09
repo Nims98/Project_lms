@@ -104,7 +104,7 @@ const Allcourses = () => {
         style={{
           margin: "100px 20px 0 0",
           height: "40px",
-          background: "#00498B",
+          background: "#1444FC",
           textTransform: "none",
           fontSize: 16,
           color: "white",
