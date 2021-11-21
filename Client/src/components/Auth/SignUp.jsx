@@ -294,11 +294,13 @@ const SignUp = () => {
                             InputProps={{
                               endAdornment: (
                                 <InputAdornment position="start">
-                                  {showPassword ? (
-                                    <VisibilityOff fontSize="small" onClick={ShowPassword} />
-                                  ) : (
-                                    <Visibility fontSize="small" onClick={ShowPassword} />
-                                  )}
+                                  <IconButton onClick={ShowPassword}>
+                                    {showPassword ? (
+                                      <VisibilityOff fontSize="small" />
+                                    ) : (
+                                      <Visibility fontSize="small" />
+                                    )}
+                                  </IconButton>
                                 </InputAdornment>
                               ),
                             }}
