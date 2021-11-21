@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-    admin: Boolean,
+    isAdmin: Boolean,
     name: String,
     firstName: String,
     lastName: String,

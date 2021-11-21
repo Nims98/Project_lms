@@ -30,7 +30,7 @@ const CourseView = () => {
   const course = allCourses.filter((val) => val._id === id);
 
   console.log(id);
-  console.log(course);
+  console.log(course[0]);
   return !course[0] ? (
     <div
       style={{

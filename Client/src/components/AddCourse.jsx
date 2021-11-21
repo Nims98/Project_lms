@@ -87,7 +87,7 @@ const AddCourse = () => {
 
               console.log(values.courseCode);
               alert(
-                `     Course Name : ${values.courseName}
+                ` Course Name : ${values.courseName}
                   Course Code : ${values.courseCode}
                   Info : ${values.info}
                   Instructor Name : ${values.instructor}

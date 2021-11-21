@@ -122,7 +122,7 @@ const Profile = () => {
                   )
                 );
               }
-              alert("Profile has been updated.Changes will be applied next time you logged in");
+              alert("Profile has been updated.Changes will be applied next time you log in");
             }, 500);
           }}>
           {({ submitForm, setFieldValue }) => (

@@ -45,6 +45,12 @@ const NavBar = ({ value }) => {
     setuser(null);
   };
 
+  const [isAdmin, setisAdmin] = useState(false);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("profile")).result.email === "myadmin@gmail.com") setisAdmin(true);
+  }, location);
+
   const handleChange = (e, newIndex) => {
     setselectedTab(newIndex);
   };
@@ -68,7 +74,7 @@ const NavBar = ({ value }) => {
                     value={history.location.pathname === true ? history.location.pathname : selectedTab}
                     onChange={handleChange}>
                     <MyTab label="All Courses" component={Link} to="/dashboard/all-courses" value="0" />
-                    <MyTab label="My Courses" component={Link} to="/dashboard/my-courses" value="1" />
+                    {!isAdmin && <MyTab label="My Courses" component={Link} to="/dashboard/my-courses" value="1" />}
                     <MyTab label="Profile" component={Link} to="/dashboard/profile" value="2" />
                   </MyTabs>
                 </>
@@ -87,11 +93,11 @@ const NavBar = ({ value }) => {
                 margin: "25px 25px 25px 40px",
                 textTransform: "none",
                 fontWeight: "500",
-                background: "whitesmoke",
+                background: "white",
                 fontSize: 18,
                 height: 35,
               }}
-              variant="contained"
+              variant="outlined"
               size="small"
               onClick={logout}>
               Log Out

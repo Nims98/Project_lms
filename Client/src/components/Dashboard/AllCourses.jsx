@@ -7,7 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import { useSelector } from "react-redux";
 import { coursesReceived } from "../../store/courses.js";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 const useStyles = makeStyles({
   container: {
@@ -25,17 +25,25 @@ const Allcourses = () => {
   const { payload } = useSelector(coursesReceived);
   const allCourses = payload.courses.list;
   const history = useHistory();
+  const location = useLocation();
+  const ADMIN = "myadmin@gmail.com";
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     setCourses(allCourses);
   }, [allCourses]);
 
+  const [isAdmin, setisAdmin] = useState(false);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("profile")).result.email === ADMIN) setisAdmin(true);
+  }, location);
+
   const createCourse = () => {
     history.push("/dashboard/all-courses/add-course");
   };
   const [Search, setSearch] = useState("");
-
+  console.log(isAdmin);
   return !allCourses.length ? (
     <div
       style={{
@@ -98,19 +106,21 @@ const Allcourses = () => {
           </div>
         </Fade>
       </Container>
-      <Button
-        onClick={createCourse}
-        variant="contained"
-        style={{
-          margin: "100px 20px 0 0",
-          height: "40px",
-          background: "#1444FC",
-          textTransform: "none",
-          fontSize: 16,
-          color: "white",
-        }}>
-        Create Course
-      </Button>
+      {isAdmin && (
+        <Button
+          onClick={createCourse}
+          variant="contained"
+          style={{
+            margin: "100px 20px 0 0",
+            height: "40px",
+            background: "#1444FC",
+            textTransform: "none",
+            fontSize: 16,
+            color: "white",
+          }}>
+          Create Course
+        </Button>
+      )}
     </div>
   );
 };

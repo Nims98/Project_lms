@@ -44,7 +44,7 @@ const SignUp = () => {
   useEffect(() => {
     if (localStorage.getItem("profile")) {
       const token = JSON.parse(localStorage.getItem("profile")).token;
-      if (token) history.push("/dashboard/my-courses");
+      if (token) history.push("/dashboard/all-courses");
       setAuthState(JSON.parse(localStorage.getItem("profile")));
       if (!token) history.push("/");
     }

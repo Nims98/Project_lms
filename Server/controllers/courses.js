@@ -28,3 +28,9 @@ export const addReview = async(req, res) => {
     const updatedCourse = await Course.findByIdAndUpdate(_id, { $addToSet: { reviews: [review] } }, { new: true });
     res.json(updatedCourse);
 };
+
+export const deleteCourse = async(req, res) => {
+    const { id } = req.params;
+    const deletedCourse = await Course.findByIdAndDelete(id);
+    res.json(deletedCourse);
+};

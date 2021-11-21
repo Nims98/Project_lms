@@ -4,8 +4,8 @@ import { Container, Grid, Fade } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core/";
 import { CircularProgress } from "@material-ui/core";
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { coursesReceived } from "./../../store/courses.js";
 import { useSelector, useDispatch } from "react-redux";
 import { enrollCourse } from "../../store/auth.js";
@@ -80,6 +80,7 @@ const Description = ({ info }) => {
 
 const EnrollPage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const profile = JSON.parse(localStorage.getItem("profile")).result;
   const currentUserId = profile._id;
@@ -102,6 +103,11 @@ const EnrollPage = () => {
     setselectedTab(newIndex);
   };
   const classes = useStyles();
+  const [isAdmin, setisAdmin] = useState(false);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("profile")).result.email === "myadmin@gmail.com") setisAdmin(true);
+  }, location);
 
   return !course[0] ? (
     <div
@@ -147,15 +153,17 @@ const EnrollPage = () => {
                   </Paper>
                 </Grid>
                 <Grid item md={3}>
-                  <Button
-                    onClick={enroll}
-                    variant="contained"
-                    color="primary"
-                    style={{
-                      background: "#1444FC",
-                    }}>
-                    Enroll Now
-                  </Button>
+                  {!isAdmin && (
+                    <Button
+                      onClick={enroll}
+                      variant="contained"
+                      color="primary"
+                      style={{
+                        background: "#1444FC",
+                      }}>
+                      Enroll Now
+                    </Button>
+                  )}
                 </Grid>
               </Grid>
             </Container>
